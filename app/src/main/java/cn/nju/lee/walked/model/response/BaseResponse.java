@@ -5,9 +5,9 @@ package cn.nju.lee.walked.model.response;
  */
 
 public class BaseResponse<T> {
-    String condition;
-    String message;
-    T data;
+    String condition;   // 请求结果
+    String message;     // 返回信息
+    T data;             // 返回数据
 
     public BaseResponse(String condition, String message, T data) {
         this.condition = condition;

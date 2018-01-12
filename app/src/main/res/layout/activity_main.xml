@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     tools:context="cn.nju.lee.walked.MainActivity">
 
-    <com.baidu.mapapi.map.MapView
-        android:id="@+id/bmapview_demo"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:clickable="true"
-        android:focusable="true"/>
+    <fragment android:name="cn.nju.lee.walked.view.baidumap.MapFragment"
+        android:id="@+id/fgm_map"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
 
 </android.support.constraint.ConstraintLayout>
