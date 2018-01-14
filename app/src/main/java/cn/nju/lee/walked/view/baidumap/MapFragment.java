@@ -1,12 +1,9 @@
 package cn.nju.lee.walked.view.baidumap;
 
-import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.Fragment;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,16 +15,17 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdate;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 
-import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.nju.lee.walked.R;
-import pub.devrel.easypermissions.EasyPermissions;
+
 
 /**
  * Created by 果宝 on 2018/1/12.
@@ -67,6 +65,7 @@ public class MapFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         mMapView.onDestroy();
+        mLocationClient.stop();
     }
 
     private void initProperty() {
@@ -90,8 +89,16 @@ public class MapFragment extends Fragment {
         MyLocationConfiguration config = new MyLocationConfiguration(
                 mCurrentMode, enableDirection, mCurrentMarker,
                 accuracyCircleFillColor, accuracyCircleStrokeColor);
-
         mBaiduMap.setMyLocationConfiguration(config);
+
+        // 设置定位图层的初始层级
+        int initLevel = 20;
+        MapStatus mMapStatus = new MapStatus.Builder().zoom(initLevel).build();
+        MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
+        mBaiduMap.setMapStatus(mMapStatusUpdate);
+
+        // 开启定位功能
+        mBaiduMap.setMyLocationEnabled(true);
     }
 
     /**
@@ -131,8 +138,8 @@ public class MapFragment extends Fragment {
         option.setEnableSimulateGps(false);
 
         //设置mLocationClient并启动
-        mLocationClient.registerLocationListener(new MyLocationListener());
         mLocationClient.setLocOption(option);
+        mLocationClient.registerLocationListener(new MyLocationListener());
         mLocationClient.start();
     }
 
@@ -152,6 +159,8 @@ public class MapFragment extends Fragment {
                     .longitude(bdLocation.getLongitude()).build();
             // 设置定位数据
             mBaiduMap.setMyLocationData(locData);
+
+            Log.i("map", "getloc");
         }
     }
 }
