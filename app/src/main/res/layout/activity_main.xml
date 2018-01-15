@@ -5,10 +5,13 @@
     android:layout_height="match_parent"
     tools:context="cn.nju.lee.walked.MainActivity">
 
-    <fragment android:name="cn.nju.lee.walked.view.baidumap.MapFragment"
+    <!--MapFragment必须动态加载，不能使用include导入-->
+    <fragment android:name="cn.nju.lee.walked.view.map.MapFragment"
         android:id="@+id/fgm_map"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="match_parent" />
+
+    <include layout="@layout/multifab_func"/>
 
 </android.support.constraint.ConstraintLayout>
