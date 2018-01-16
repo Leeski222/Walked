@@ -3,7 +3,6 @@ package cn.nju.lee.walked.view.map;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +80,12 @@ public class MapFragment extends Fragment implements OnUpdateMyLocationData{
         isFirstLoc = true;
         isRequestLoc = false;
         mBaiduMap = mMapView.getMap();
+        mBaiduMap.setOnMapLoadedCallback(new BaiduMap.OnMapLoadedCallback() {
+            @Override
+            public void onMapLoaded() {
+                MapView.setMapCustomEnable(true);
+            }
+        });
         myLocationClient = new MyLocationClient(getActivity().getApplicationContext(), this);
     }
 
@@ -160,8 +165,6 @@ public class MapFragment extends Fragment implements OnUpdateMyLocationData{
     public void updateMyLocationData(MyLocationData locData) {
         // 设置定位数据
         mBaiduMap.setMyLocationData(locData);
-
-        Log.e("Map", locData.accuracy + "");
 
         if(isRequestLoc || isFirstLoc) {
             isFirstLoc = false;
