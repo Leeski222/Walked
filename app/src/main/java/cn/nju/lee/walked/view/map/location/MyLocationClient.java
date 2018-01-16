@@ -1,4 +1,4 @@
-package cn.nju.lee.walked.view.map;
+package cn.nju.lee.walked.view.map.location;
 
 import android.content.Context;
 
@@ -8,16 +8,26 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.MyLocationData;
 
+import cn.nju.lee.walked.view.map.direction.MyDirectionSensor;
+
 /**
  * Created by 果宝 on 2018/1/16.
  */
 
 public class MyLocationClient {
-    private LocationClient mLocationClient;
-    private OnUpdateMyLocationData onUpdateMyLocationData;
 
-    protected MyLocationClient(Context context, OnUpdateMyLocationData onUpdateMyLocationData) {
+    private LocationClient mLocationClient;
+    private MyDirectionSensor myDirectionSensor;
+
+    // 更新定位的回调接口
+    private OnUpdateMyLocationData onUpdateMyLocationData;
+    public interface OnUpdateMyLocationData {
+        void updateMyLocationData(MyLocationData locData);
+    }
+
+    public MyLocationClient(Context context, OnUpdateMyLocationData onUpdateMyLocationData) {
         this.mLocationClient = new LocationClient(context);
+        this.myDirectionSensor = new MyDirectionSensor(context);
         this.onUpdateMyLocationData = onUpdateMyLocationData;
         initClient();
     }
@@ -61,19 +71,26 @@ public class MyLocationClient {
         // 设置mLocationClient并启动
         mLocationClient.setLocOption(option);
         mLocationClient.registerLocationListener(new MyLocationListener());
+    }
+
+    public void startClient() {
         mLocationClient.start();
+        myDirectionSensor.startSensor();
     }
 
     public void resumeClient() {
         mLocationClient.registerLocationListener(new MyLocationListener());
+        myDirectionSensor.startSensor();
     }
 
     public void pauseClient() {
         mLocationClient.unRegisterLocationListener(new MyLocationListener());
+        myDirectionSensor.stopSensor();
     }
 
     public void stopClient() {
         mLocationClient.stop();
+        myDirectionSensor.stopSensor();
     }
 
     /**
@@ -84,12 +101,14 @@ public class MyLocationClient {
 
         @Override
         public void onReceiveLocation(BDLocation bdLocation) {
+            float direction = myDirectionSensor.getDirection();
+
             // 构造定位数据
             MyLocationData locData = new MyLocationData.Builder()
                     // 设置半径
                     .accuracy(bdLocation.getRadius())
                     // 设置方向信息
-                    .direction(100)
+                    .direction(direction)
                     // 设置纬度
                     .latitude(bdLocation.getLatitude())
                     // 设置经度

@@ -2,7 +2,6 @@ package cn.nju.lee.walked;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.MapView;

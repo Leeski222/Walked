@@ -23,13 +23,14 @@ import com.baidu.mapapi.model.LatLng;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.nju.lee.walked.R;
-
+import cn.nju.lee.walked.view.map.direction.MyDirectionSensor;
+import cn.nju.lee.walked.view.map.location.MyLocationClient;
 
 /**
  * Created by 果宝 on 2018/1/12.
  */
 
-public class MapFragment extends Fragment implements OnUpdateMyLocationData{
+public class MapFragment extends Fragment implements MyLocationClient.OnUpdateMyLocationData {
 
     // 是否为初次定位
     private boolean isFirstLoc;
@@ -87,6 +88,7 @@ public class MapFragment extends Fragment implements OnUpdateMyLocationData{
             }
         });
         myLocationClient = new MyLocationClient(getActivity().getApplicationContext(), this);
+        myLocationClient.startClient();
     }
 
     /**
@@ -122,7 +124,7 @@ public class MapFragment extends Fragment implements OnUpdateMyLocationData{
         int accuracyCircleFillColor = 0xAAFFFF88;
         int accuracyCircleStrokeColor = 0xAA00FF00;
         BitmapDescriptor mCurrentMarker =
-                BitmapDescriptorFactory.fromResource(R.drawable.ic_3d_rotation);
+                BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher_background);
 
         // 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标, 自定义精度圈填充颜色, 自定义精度圈边框颜色）
         MyLocationConfiguration config = new MyLocationConfiguration(
