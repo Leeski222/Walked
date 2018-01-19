@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.nju.lee.walked.util.PermissionUtil;
 import cn.nju.lee.walked.view.map.MapFragment;
+import cn.nju.lee.walked.view.record.RecordActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -81,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
                     case 1 :
                         break;
                     case 2 :
+                        RecordActivity.activityStart(MainActivity.this);
+                        break;
+                    case 3 :
                         break;
                 }
             }

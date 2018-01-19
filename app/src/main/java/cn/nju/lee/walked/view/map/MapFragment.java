@@ -23,7 +23,6 @@ import com.baidu.mapapi.model.LatLng;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.nju.lee.walked.R;
-import cn.nju.lee.walked.view.map.direction.MyDirectionSensor;
 import cn.nju.lee.walked.view.map.location.MyLocationClient;
 
 /**

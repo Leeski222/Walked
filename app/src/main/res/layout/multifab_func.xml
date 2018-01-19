@@ -12,7 +12,7 @@
     <com.lzp.floatingactionbuttonplus.FabTagLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:tagText="Send mail"
+        app:tagText="定位"
         >
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
@@ -25,7 +25,7 @@
     <com.lzp.floatingactionbuttonplus.FabTagLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:tagText="shopping list"
+        app:tagText="个人信息"
         >
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
@@ -38,9 +38,21 @@
     <com.lzp.floatingactionbuttonplus.FabTagLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:tagText="Search this page"
+        app:tagText="搜索周围"
         >
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher_round"
+            app:backgroundTint="#473C8B"
+            app:fabSize="mini" />
+    </com.lzp.floatingactionbuttonplus.FabTagLayout>
 
+    <com.lzp.floatingactionbuttonplus.FabTagLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tagText="发布记录"
+        >
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
