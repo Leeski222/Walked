@@ -46,9 +46,9 @@ public class MyDirectionSensor implements OrientationSensorInterface {
      */
     @Override
     public void orientation(Double AZIMUTH, Double PITCH, Double ROLL) {
-        Log.d("Azimuth",String.valueOf(AZIMUTH));
-        Log.d("PITCH",String.valueOf(PITCH));
-        Log.d("ROLL",String.valueOf(ROLL));
+//        Log.d("Azimuth",String.valueOf(AZIMUTH));
+//        Log.d("PITCH",String.valueOf(PITCH));
+//        Log.d("ROLL",String.valueOf(ROLL));
         direction = AZIMUTH.floatValue();
     }
 

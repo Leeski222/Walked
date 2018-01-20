@@ -1,5 +1,6 @@
 package cn.nju.lee.walked;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -18,6 +19,7 @@ import butterknife.ButterKnife;
 import cn.nju.lee.walked.util.PermissionUtil;
 import cn.nju.lee.walked.view.map.MapFragment;
 import cn.nju.lee.walked.view.record.RecordActivity;
+import cn.nju.lee.walked.view.recordlist.RecordListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -82,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
                     case 1 :
                         break;
                     case 2 :
-                        RecordActivity.activityStart(MainActivity.this);
+                        Intent intent = new Intent(MainActivity.this, RecordListActivity.class);
+                        startActivity(intent);
                         break;
                     case 3 :
                         break;

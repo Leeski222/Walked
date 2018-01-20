@@ -44,7 +44,7 @@ public class PermissionUtil {
         }
     }
 
-    private class HelpActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
+    public class HelpActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
