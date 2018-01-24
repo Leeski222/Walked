@@ -17,6 +17,7 @@ import java.io.InputStream;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.nju.lee.walked.util.PermissionUtil;
+import cn.nju.lee.walked.view.login.LoginActivity;
 import cn.nju.lee.walked.view.map.MapFragment;
 import cn.nju.lee.walked.view.record.RecordActivity;
 import cn.nju.lee.walked.view.recordlist.RecordListActivity;
@@ -82,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
                         mMapFragment.setRequestLoc(true);
                         break;
                     case 1 :
+                        Intent intent1 = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent1);
                         break;
                     case 2 :
                         Intent intent = new Intent(MainActivity.this, RecordListActivity.class);

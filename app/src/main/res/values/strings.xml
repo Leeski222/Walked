@@ -2,6 +2,14 @@
     <string name="app_name">Walked</string>
     <string name="demo_username1">周围子</string>
     <string name="demo_date">2017年11月26日</string>
+    <string name="signup_info">基本信息:</string>
+    <string name="account">账号</string>
+    <string name="password">密码(6-12位)</string>
+    <string name="email">邮箱</string>
+    <string name="verification">验证码</string>
+    <string name="send_verification">发送验证码</string>
+    <string name="sign_up">注册</string>
+    <string name="thumb_up_numbers">点赞数: </string>
     <string name="demo_text">"一个专拍表情包的伪文青
 
 
@@ -91,4 +99,10 @@
 我可是她的亲儿子啊！她却不愿放下手中的麻将接一下我的玫瑰QAQ...让我乖乖把花拿回家，说现在没工夫拿打着牌呢QAQ...
 
 今天就是女神节了，小编在这里祝愿所有女神光吃不胖的心愿都能够实现。您过往的岁月里，3月8日发生过什么趣事呢？欢迎在评论区留言分享。"</string>
+
+    <string name="demo_text2">一个专拍表情包的伪文青我对韩寒并不是很了解，小时候忠于漫画却不是很爱小说。第一次接触到跟韩寒有关的是《后会无期》这部电影。我喜欢那里面的人物那种没有结局的结局，人生不到最后一刻，哪有结局。
+
+告别一定要多用一点力，因为任何多看一眼，都有可能成为最后一眼，多说一句，都有可能成为最后一句。我们不断在赶路，遇到很多人很多事，最后能留下一个人，珍藏一件事，就够了。
+
+</string>
 </resources>
