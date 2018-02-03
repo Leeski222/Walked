@@ -20,11 +20,11 @@ import cn.nju.lee.walked.view.signup.SignupActivity;
 
 public class LoginActivity extends AppCompatActivity{
 
-    @BindView(R.id.imgbtn_signin)
-    ImageButton signInButton;
+    @BindView(R.id.login_btn_signin)
+    Button signInButton;
 
-    @BindView(R.id.imgbtn_signup)
-    ImageButton signUpButton;
+    @BindView(R.id.login_btn_signup)
+    Button signUpButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

@@ -2,14 +2,22 @@
     <string name="app_name">Walked</string>
     <string name="demo_username1">周围子</string>
     <string name="demo_date">2017年11月26日</string>
+
     <string name="signup_info">基本信息:</string>
     <string name="account">账号</string>
     <string name="password">密码(6-12位)</string>
     <string name="email">邮箱</string>
     <string name="verification">验证码</string>
     <string name="send_verification">发送验证码</string>
+    <string name="sign_in">登录</string>
     <string name="sign_up">注册</string>
+
+    <string name="filter">筛选栏</string>
     <string name="thumb_up_numbers">点赞数: </string>
+
+    <string name="thumb_up">点赞</string>
+    <string name="collect">收藏</string>
+
     <string name="demo_text">"一个专拍表情包的伪文青
 
 

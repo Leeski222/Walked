@@ -1,10 +1,14 @@
 package cn.nju.lee.walked.view.recordlist;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +26,18 @@ import static com.baidu.mapapi.BMapManager.getContext;
  */
 
 public class RecordListActivity extends AppCompatActivity {
+
+    private boolean isRefresh;
+
+    private List<RecordVO> recordVOList;
+
+    private RecordListAdapter adapter;
+
     @BindView(R.id.recordlist_rcl_list)
     RecyclerView mRecyclerView;
 
-    private List<RecordVO> recordVOList;
+    @BindView(R.id.recordlist_srl_refresh)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,8 +45,10 @@ public class RecordListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recordlist);
         ButterKnife.bind(this);
         initRecordList();
+        adapter = new RecordListAdapter(getContext(), recordVOList);
+        mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerView.setAdapter(new RecordListAdapter(getContext(), recordVOList));
+        mSwipeRefreshLayout.setOnRefreshListener(new RefreshListener());
     }
 
     @Override
@@ -53,4 +67,28 @@ public class RecordListActivity extends AppCompatActivity {
                     "100"));
         }
     }
+
+    private class RefreshListener implements SwipeRefreshLayout.OnRefreshListener {
+
+        @Override
+        public void onRefresh() {
+            if (!isRefresh) {
+                isRefresh = true;
+
+                new Handler().postDelayed(new Runnable() {
+
+                    public void run() {
+                        mSwipeRefreshLayout.setRefreshing(false);
+                        Toast.makeText(getApplicationContext(), "刷新成功", Toast.LENGTH_SHORT).show();
+                        adapter.notifyDataSetChanged();
+                        isRefresh = false;
+                    }
+                }, 3000);
+            } else {
+                Log.e("Refesh", "Refreshing");
+                Toast.makeText(getApplicationContext(), "正在刷新", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 }
