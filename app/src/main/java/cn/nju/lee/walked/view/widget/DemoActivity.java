@@ -8,9 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import cn.nju.lee.walked.R;
-import cn.nju.lee.walked.contract.DemoContract;
 import cn.nju.lee.walked.model.vopo.DemoVO;
-import cn.nju.lee.walked.presenter.DemoPresenter;
 
 /**
  * Created by 果宝 on 2018/1/5.

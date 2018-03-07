@@ -51,7 +51,7 @@
         <activity android:name=".view.record.RecordActivity"></activity>
         <activity android:name=".view.recordlist.RecordListActivity"></activity>
         <activity android:name=".view.login.LoginActivity"></activity>
-        <activity android:name=".view.signup.SignupActivity"></activity>
+        <activity android:name=".view.signup.SignUpActivity"></activity>
         <activity android:name=".util.PermissionUtil$HelpActivity"></activity>
 
         <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"> </service>

@@ -1,4 +1,6 @@
-package cn.nju.lee.walked.model.modelimpl;
+package cn.nju.lee.walked.model.service;
+
+import android.util.Log;
 
 import java.util.concurrent.TimeUnit;
 
@@ -7,17 +9,21 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 /**
- * Created by 果宝 on 2018/1/5.
+ * Created by 果宝 on 2018/3/7.
  */
 
-public class BaseModelImpl {
-    private static final String BASE_URL = "http://119.23.247.1:8080/";
+public class RetrofitServer {
+    private static final String BASE_URL = "https://clevelandalto.site";
     private static final int DEFAULT_TIMEOUT = 10;
-    Retrofit retrofit;
+    private Retrofit retrofit;
 
-    protected BaseModelImpl() {
+    private static RetrofitServer mRetrofitServer;
+
+    private RetrofitServer() {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+//        httpClientBuilder.cookieJar(new CookieJarImpl());
         httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
 
         retrofit = new Retrofit.Builder()
@@ -26,5 +32,16 @@ public class BaseModelImpl {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(BASE_URL)
                 .build();
+    }
+
+    public static synchronized RetrofitServer getInstance() {
+        if(mRetrofitServer == null) {
+            mRetrofitServer = new RetrofitServer();
+        }
+        return mRetrofitServer;
+    }
+
+    public <T> T create(Class<T> service) {
+        return retrofit.create(service);
     }
 }

@@ -19,7 +19,6 @@ import butterknife.ButterKnife;
 import cn.nju.lee.walked.util.PermissionUtil;
 import cn.nju.lee.walked.view.login.LoginActivity;
 import cn.nju.lee.walked.view.map.MapFragment;
-import cn.nju.lee.walked.view.record.RecordActivity;
 import cn.nju.lee.walked.view.recordlist.RecordListActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,13 +31,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SDKInitializer.initialize(getApplicationContext());
+
         PermissionUtil.getInstance().getPermissions();
+
+        // 初始化地图组件
+        SDKInitializer.initialize(getApplicationContext());
         initCustomMap();
+
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
         initWidget();
-//        DemoActivity.activityStart(this, "a");
     }
 
     private void initCustomMap() {
