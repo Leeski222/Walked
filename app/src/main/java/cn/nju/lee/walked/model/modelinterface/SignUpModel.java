@@ -1,5 +1,6 @@
 package cn.nju.lee.walked.model.modelinterface;
 
+import cn.nju.lee.walked.model.response.SendVerificationResponse;
 import cn.nju.lee.walked.model.response.SignUpResponse;
 import io.reactivex.Observer;
 
@@ -10,4 +11,7 @@ import io.reactivex.Observer;
 public interface SignUpModel {
     void signUp(Observer<SignUpResponse> observer,
                 String email, String username, String password);
+
+    void sendVerificationCode(Observer<SendVerificationResponse> observer,
+                              String email);
 }

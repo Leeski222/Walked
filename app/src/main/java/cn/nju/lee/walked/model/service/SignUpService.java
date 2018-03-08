@@ -2,6 +2,7 @@ package cn.nju.lee.walked.model.service;
 
 import cn.nju.lee.walked.model.response.BaseResponse;
 import cn.nju.lee.walked.model.response.SignUpResponse;
+import cn.nju.lee.walked.model.response.VerificationResponse;
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
@@ -27,5 +28,11 @@ public interface SignUpService {
             @Field("email") String email,
             @Field("username") String username,
             @Field("password") String password
+    );
+
+    @FormUrlEncoded
+    @POST("/verification")
+    Observable<VerificationResponse> sendVerificationResponse(
+            @Field("emali") String email
     );
 }

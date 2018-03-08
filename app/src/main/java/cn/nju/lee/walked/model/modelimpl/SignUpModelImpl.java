@@ -1,6 +1,7 @@
 package cn.nju.lee.walked.model.modelimpl;
 
 import cn.nju.lee.walked.model.modelinterface.SignUpModel;
+import cn.nju.lee.walked.model.response.SendVerificationResponse;
 import cn.nju.lee.walked.model.response.SignUpResponse;
 import cn.nju.lee.walked.model.service.RetrofitServer;
 import cn.nju.lee.walked.model.service.SignUpService;
@@ -28,5 +29,10 @@ public class SignUpModelImpl implements SignUpModel {
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
+    }
+
+    @Override
+    public void sendVerificationCode(Observer<SendVerificationResponse> observer, String email) {
+
     }
 }

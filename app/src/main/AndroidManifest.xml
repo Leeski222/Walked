@@ -47,7 +47,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.widget.DemoActivity"></activity>
         <activity android:name=".view.record.RecordActivity"></activity>
         <activity android:name=".view.recordlist.RecordListActivity"></activity>
         <activity android:name=".view.login.LoginActivity"></activity>

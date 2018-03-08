@@ -15,7 +15,7 @@ public class ModelRepository{
     private ModelRepository() {
     }
 
-    public static ModelRepository getInstance() {
+    public static synchronized ModelRepository getInstance() {
         if(modelRepository == null) {
             modelRepository = new ModelRepository();
         }
