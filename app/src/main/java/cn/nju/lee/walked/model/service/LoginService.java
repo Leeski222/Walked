@@ -15,11 +15,10 @@ public interface LoginService {
     @Headers({
             "Content-Type: application/x-www-form-urlencoded"
     })
-
     @FormUrlEncoded
-    @POST("/auth")
+    @POST("/users/token")
     Observable<LoginResponse> login(
-            @Field("username") String username,
+            @Field("email") String email,
             @Field("password") String password
     );
 }

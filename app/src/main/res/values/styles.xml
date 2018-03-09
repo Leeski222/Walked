@@ -9,4 +9,9 @@
         <item name="android:divider">@drawable/divider_gray</item>
     </style>
 
+    <style name="upload_photo_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_popup_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_popup_out</item>
+    </style>
+
 </resources>

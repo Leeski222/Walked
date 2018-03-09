@@ -1,14 +1,12 @@
 package cn.nju.lee.walked.model.service;
 
-import cn.nju.lee.walked.model.response.BaseResponse;
 import cn.nju.lee.walked.model.response.SignUpResponse;
 import cn.nju.lee.walked.model.response.VerificationResponse;
 import io.reactivex.Observable;
-import okhttp3.ResponseBody;
-import retrofit2.Response;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
@@ -17,22 +15,22 @@ import retrofit2.http.POST;
  */
 
 public interface SignUpService {
+
     @Headers({
             "Content-Type: application/json",
             "Accept: application/json"
     })
-
-    @FormUrlEncoded
     @POST("/users")
     Observable<SignUpResponse> signUp(
-            @Field("email") String email,
-            @Field("username") String username,
-            @Field("password") String password
+            @Body RequestBody body
     );
 
+    @Headers({
+            "Content-Type: application/x-www-form-urlencoded"
+    })
     @FormUrlEncoded
     @POST("/verification")
     Observable<VerificationResponse> sendVerificationResponse(
-            @Field("emali") String email
+            @Field("email") String email
     );
 }

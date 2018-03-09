@@ -9,5 +9,5 @@ import io.reactivex.Observer;
 
 public interface LoginModel {
     void login(Observer<LoginResponse> observer,
-               String username, String password);
+               String email, String password);
 }

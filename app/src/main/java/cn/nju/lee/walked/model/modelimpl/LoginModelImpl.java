@@ -21,8 +21,8 @@ public class LoginModelImpl implements LoginModel {
     }
 
     @Override
-    public void login(Observer<LoginResponse> observer, String username, String password) {
-        loginService.login(username, password)
+    public void login(Observer<LoginResponse> observer, String email, String password) {
+        loginService.login(email, password)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

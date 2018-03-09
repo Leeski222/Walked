@@ -2,11 +2,17 @@ package cn.nju.lee.walked.view.signup;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -15,7 +21,8 @@ import butterknife.OnClick;
 import cn.nju.lee.walked.R;
 import cn.nju.lee.walked.contract.SignUpContract;
 import cn.nju.lee.walked.presenter.SignUpPresenter;
-import cn.nju.lee.walked.util.SignResult;
+import cn.nju.lee.walked.util.SignUpResult;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by 果宝 on 2018/1/20.
@@ -25,10 +32,12 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     private SignUpContract.Presenter signUpPresenter;
 
+    @BindView(R.id.signup_civ_profile)
+    CircleImageView profileCircleImageView;
     @BindView(R.id.signup_et_email)
     EditText emailEditText;
-    @BindView(R.id.signup_et_account)
-    EditText accountEditText;
+    @BindView(R.id.signup_et_username)
+    EditText usernameEditText;
     @BindView(R.id.signup_et_password)
     EditText passwordEditText;
     @BindView(R.id.signup_et_verification)
@@ -67,15 +76,21 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     }
 
+    @Override
+    public void emailFormatInvalid() {
+        Toast.makeText(this, "邮箱格式错误", Toast.LENGTH_SHORT).show();
+    }
+
     @OnClick(R.id.signup_btn_signup)
     void signUp() {
         boolean isAcceptProtocol = acceptProtocolCheckBox.isChecked();
-        String email = "";
-        String username = "";
-        String password = "";
-        String verificationCode = "";
+
+        String email = emailEditText.getText().toString();
+        String username = usernameEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
+        String verification = verificationEditText.getText().toString();
         if(isAcceptProtocol) {
-            signUpPresenter.signUp(email, username, password);
+            signUpPresenter.signUp(null, email, username, password, verification);
         } else {
             Toast.makeText(this, "请先同意用户协议", Toast.LENGTH_SHORT).show();
         }
@@ -83,6 +98,34 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     @OnClick(R.id.signup_btn_send)
     void sendVerificationCode() {
+        String email = emailEditText.getText().toString();
+        signUpPresenter.sendVerificationCode(email);
+        showPopwindow();
+    }
 
+    private void showPopwindow() {
+        View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+        View popView = View.inflate(this, R.layout.popup_select_photo, null);
+
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+
+        final PopupWindow popWindow = new PopupWindow(popView,width,height);
+        popWindow.setAnimationStyle(R.style.upload_photo_anim);
+        popWindow.setFocusable(true);
+        popWindow.setOutsideTouchable(false);// 设置同意在外点击消失
+
+//        View.OnClickListener listener = new View.OnClickListener() {
+//            public void onClick(View v) {
+//                switch (v.getId()) {
+//
+//                }
+//                popWindow.dismiss();
+//            }
+//        };
+
+        ColorDrawable dw = new ColorDrawable(0x30000000);
+        popWindow.setBackgroundDrawable(dw);
+        popWindow.showAtLocation(parent, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
     }
 }

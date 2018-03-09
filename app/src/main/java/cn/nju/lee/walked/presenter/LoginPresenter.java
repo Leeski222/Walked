@@ -29,7 +29,7 @@ public class LoginPresenter implements LoginContract.Presenter{
     }
 
     @Override
-    public void login(String username, String password) {
+    public void login(String email, String password) {
         loginModel.login(new Observer<LoginResponse>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -38,19 +38,19 @@ public class LoginPresenter implements LoginContract.Presenter{
 
             @Override
             public void onNext(LoginResponse loginResponse) {
-                Log.e("LoginPresenter", loginResponse.getCondition());
-                Log.e("LoginPresenter", loginResponse.getMessage());
+                Log.e("LoginPresenter onNext", loginResponse.getCondition());
+                Log.e("LoginPresenter onNext", loginResponse.getMessage());
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.e("LoginPresenter", e.getMessage());
+                Log.e("LoginPresenter onError", e.getMessage());
             }
 
             @Override
             public void onComplete() {
 
             }
-        }, username, password);
+        }, email, password);
     }
 }

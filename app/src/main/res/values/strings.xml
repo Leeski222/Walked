@@ -28,6 +28,9 @@
     <string name="thumb_up">点赞</string>
     <string name="collect">收藏</string>
 
+    <string name="take_photo">拍照</string>
+    <string name="open_album">从相册中挑选</string>
+
     <string name="demo_text">"一个专拍表情包的伪文青
 
 

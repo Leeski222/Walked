@@ -1,7 +1,9 @@
 package cn.nju.lee.walked.model.modelinterface;
 
-import cn.nju.lee.walked.model.response.SendVerificationResponse;
+import java.io.File;
+
 import cn.nju.lee.walked.model.response.SignUpResponse;
+import cn.nju.lee.walked.model.response.VerificationResponse;
 import io.reactivex.Observer;
 
 /**
@@ -10,8 +12,8 @@ import io.reactivex.Observer;
 
 public interface SignUpModel {
     void signUp(Observer<SignUpResponse> observer,
-                String email, String username, String password);
+                File file, String email, String username, String password);
 
-    void sendVerificationCode(Observer<SendVerificationResponse> observer,
+    void sendVerificationCode(Observer<VerificationResponse> observer,
                               String email);
 }
