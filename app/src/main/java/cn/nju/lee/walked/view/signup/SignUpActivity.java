@@ -2,17 +2,11 @@ package cn.nju.lee.walked.view.signup;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -22,6 +16,7 @@ import cn.nju.lee.walked.R;
 import cn.nju.lee.walked.contract.SignUpContract;
 import cn.nju.lee.walked.presenter.SignUpPresenter;
 import cn.nju.lee.walked.util.SignUpResult;
+import cn.nju.lee.walked.view.widget.UploadPhotoPopupWindow;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -31,6 +26,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SignUpActivity extends AppCompatActivity implements SignUpContract.View {
 
     private SignUpContract.Presenter signUpPresenter;
+
+    private UploadPhotoPopupWindow mUploadPhotoPopupWindow;
 
     @BindView(R.id.signup_civ_profile)
     CircleImageView profileCircleImageView;
@@ -57,6 +54,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
 
+        this.mUploadPhotoPopupWindow = new UploadPhotoPopupWindow(this);
         this.signUpPresenter = new SignUpPresenter(this);
         this.signUpPresenter.start();
     }
@@ -100,32 +98,11 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     void sendVerificationCode() {
         String email = emailEditText.getText().toString();
         signUpPresenter.sendVerificationCode(email);
-        showPopupWindow();
     }
 
-    private void showPopupWindow() {
-        View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
-        View popView = View.inflate(this, R.layout.popup_select_photo, null);
-
-        int width = getResources().getDisplayMetrics().widthPixels;
-        int height = getResources().getDisplayMetrics().heightPixels;
-
-        final PopupWindow popWindow = new PopupWindow(popView,width,height);
-        popWindow.setAnimationStyle(R.style.upload_photo_anim);
-        popWindow.setFocusable(true);
-        popWindow.setOutsideTouchable(true);// 设置同意在外点击消失
-
-//        View.OnClickListener listener = new View.OnClickListener() {
-//            public void onClick(View v) {
-//                switch (v.getId()) {
-//
-//                }
-//                popWindow.dismiss();
-//            }
-//        };
-
-        ColorDrawable dw = new ColorDrawable(0x30000000);
-        popWindow.setBackgroundDrawable(dw);
-        popWindow.showAtLocation(parent, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+    @OnClick(R.id.signup_civ_profile)
+    void uploadProfile() {
+        mUploadPhotoPopupWindow.showPopupWindow();
     }
+
 }
