@@ -100,10 +100,10 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     void sendVerificationCode() {
         String email = emailEditText.getText().toString();
         signUpPresenter.sendVerificationCode(email);
-        showPopwindow();
+        showPopupWindow();
     }
 
-    private void showPopwindow() {
+    private void showPopupWindow() {
         View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
         View popView = View.inflate(this, R.layout.popup_select_photo, null);
 
@@ -113,7 +113,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
         final PopupWindow popWindow = new PopupWindow(popView,width,height);
         popWindow.setAnimationStyle(R.style.upload_photo_anim);
         popWindow.setFocusable(true);
-        popWindow.setOutsideTouchable(false);// 设置同意在外点击消失
+        popWindow.setOutsideTouchable(true);// 设置同意在外点击消失
 
 //        View.OnClickListener listener = new View.OnClickListener() {
 //            public void onClick(View v) {
