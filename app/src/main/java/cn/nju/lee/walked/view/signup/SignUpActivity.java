@@ -16,7 +16,7 @@ import cn.nju.lee.walked.R;
 import cn.nju.lee.walked.contract.SignUpContract;
 import cn.nju.lee.walked.presenter.SignUpPresenter;
 import cn.nju.lee.walked.util.SignUpResult;
-import cn.nju.lee.walked.view.widget.UploadPhotoPopupWindow;
+import cn.nju.lee.walked.view.widget.UploadPictureUtil;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -27,7 +27,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     private SignUpContract.Presenter signUpPresenter;
 
-    private UploadPhotoPopupWindow mUploadPhotoPopupWindow;
+    private UploadPictureUtil mUploadPictureUtil;
 
     @BindView(R.id.signup_civ_profile)
     CircleImageView profileCircleImageView;
@@ -54,7 +54,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
 
-        this.mUploadPhotoPopupWindow = new UploadPhotoPopupWindow(this);
+        this.mUploadPictureUtil = new UploadPictureUtil(this);
         this.signUpPresenter = new SignUpPresenter(this);
         this.signUpPresenter.start();
     }
@@ -102,7 +102,12 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     @OnClick(R.id.signup_civ_profile)
     void uploadProfile() {
-        mUploadPhotoPopupWindow.showPopupWindow();
+        mUploadPictureUtil.showPopupWindow();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mUploadPictureUtil. handleActivityResult(requestCode, resultCode, data);
+    }
 }

@@ -27,7 +27,6 @@
     <!--使用步行AR导航，配置Camera权限-->
     <uses-permission android:name="android.permission.CAMERA" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -47,13 +46,25 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.record.RecordActivity"></activity>
-        <activity android:name=".view.recordlist.RecordListActivity"></activity>
-        <activity android:name=".view.login.LoginActivity"></activity>
-        <activity android:name=".view.signup.SignUpActivity"></activity>
-        <activity android:name=".util.PermissionUtil$HelpActivity"></activity>
+        <activity android:name=".view.record.RecordActivity"/>
+        <activity android:name=".view.recordlist.RecordListActivity"/>
+        <activity android:name=".view.login.LoginActivity"/>
+        <activity android:name=".view.signup.SignUpActivity"/>
 
-        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"> </service>
+        <activity android:name=".util.PermissionUtil$HelpActivity"/>
+
+        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"/>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="cn.nju.lee.walked.view"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/photopath" />
+        </provider>
+
     </application>
 
 </manifest>
