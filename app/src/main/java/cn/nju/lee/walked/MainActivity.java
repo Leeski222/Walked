@@ -1,6 +1,7 @@
 package cn.nju.lee.walked;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -28,11 +29,15 @@ public class MainActivity extends AppCompatActivity {
 
     private MapFragment mMapFragment;
 
+    private final int LOCATION_CODE = 0;
+    private final int LOGIN_CODE = 1;
+    private final int SEARCH_CODE = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        PermissionUtil.getInstance().getPermissions();
+        PermissionUtil.getInstance().getPermissions(this);
 
         // 初始化地图组件
         SDKInitializer.initialize(getApplicationContext());
@@ -82,14 +87,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(FabTagLayout tagView, int position) {
                 switch (position) {
-                    case 0 :
+                    case LOCATION_CODE:
                         mMapFragment.setRequestLoc(true);
                         break;
-                    case 1 :
+                    case LOGIN_CODE :
                         Intent intent1 = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(intent1);
                         break;
-                    case 2 :
+                    case SEARCH_CODE :
                         Intent intent = new Intent(MainActivity.this, RecordListActivity.class);
                         startActivity(intent);
                         break;
@@ -100,4 +105,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionUtil.getInstance().onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 }

@@ -1,9 +1,8 @@
 package cn.nju.lee.walked.util;
 
 import android.Manifest;
+import android.app.Activity;
 import android.os.Build;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.util.List;
@@ -17,6 +16,8 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class PermissionUtil {
     private volatile static PermissionUtil mPermissionUtil;
+
+    private Activity callActivity;
 
     private String[] permissions = {
             Manifest.permission.READ_PHONE_STATE,           //获取手机状态的权限
@@ -38,40 +39,28 @@ public class PermissionUtil {
         return mPermissionUtil;
     }
 
-    public void getPermissions() {
+    public void getPermissions(Activity activity) {
         if(Build.VERSION.SDK_INT >= 23) {
-            new HelpActivity();
-        }
-    }
-
-    public class HelpActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
-
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-
-            if (EasyPermissions.hasPermissions(this, permissions)) { //检查是否获取该权限
+            this.callActivity = activity;
+            if (EasyPermissions.hasPermissions(activity, permissions)) { //检查是否获取该权限
                 Log.i("getPermission", "已获取权限");
             } else {
-                EasyPermissions.requestPermissions(this, "必要的权限", 0, permissions);
+                EasyPermissions.requestPermissions(activity, "必要的权限", 0, permissions);
             }
         }
-
-        @Override
-        public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-            //把申请权限的回调交由EasyPermissions处理
-            EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-        }
-
-        @Override
-        public void onPermissionsGranted(int requestCode, List<String> perms) {
-            Log.i("PermissionUtil", "获取成功的权限" + perms);
-        }
-
-        @Override
-        public void onPermissionsDenied(int requestCode, List<String> perms) {
-            Log.i("PermissionUtil", "获取成功的权限" + perms);
-        }
     }
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        //把申请权限的回调交由EasyPermissions处理
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, callActivity);
+    }
+
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+        Log.i("PermissionUtil", "获取成功的权限" + perms);
+    }
+
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        Log.i("PermissionUtil", "获取成功的权限" + perms);
+    }
+
 }
