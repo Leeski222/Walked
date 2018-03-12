@@ -1,4 +1,4 @@
-package cn.nju.lee.walked.view.recordlist.adapter;
+package cn.nju.lee.walked.view.seek.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -17,11 +17,11 @@ import cn.nju.lee.walked.model.vopo.RecordVO;
  * Created by 果宝 on 2018/1/20.
  */
 
-public class RecordListAdapter extends RecyclerView.Adapter<RecordListAdapter.Holder> {
+public class SeekListAdapter extends RecyclerView.Adapter<SeekListAdapter.Holder> {
     private Context mContext;
     private List<RecordVO> recordList;
 
-    public RecordListAdapter(Context context, List<RecordVO> recordList) {
+    public SeekListAdapter(Context context, List<RecordVO> recordList) {
         this.mContext = context;
         this.recordList = recordList;
     }

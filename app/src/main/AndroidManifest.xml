@@ -46,12 +46,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.record.RecordActivity"/>
-        <activity android:name=".view.recordlist.RecordListActivity"/>
-        <activity android:name=".view.login.LoginActivity"/>
-        <activity android:name=".view.signup.SignUpActivity"/>
-
-        <activity android:name=".util.PermissionUtil$HelpActivity"/>
+        <activity android:name=".view.create.CreateActivity" />
+        <activity android:name=".view.login.LoginActivity" />
+        <activity android:name=".view.seek.SeekActivity" />
+        <activity android:name=".view.signup.SignUpActivity" />
+        <activity android:name=".view.track.TrackActivity" />
 
         <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"/>
 

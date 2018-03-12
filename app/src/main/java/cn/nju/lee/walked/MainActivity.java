@@ -18,9 +18,10 @@ import java.io.InputStream;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.nju.lee.walked.util.PermissionUtil;
+import cn.nju.lee.walked.view.create.CreateActivity;
 import cn.nju.lee.walked.view.login.LoginActivity;
 import cn.nju.lee.walked.view.map.MapFragment;
-import cn.nju.lee.walked.view.recordlist.RecordListActivity;
+import cn.nju.lee.walked.view.seek.SeekActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     private final int LOCATION_CODE = 0;
     private final int LOGIN_CODE = 1;
-    private final int SEARCH_CODE = 2;
+    private final int SEEK_CODE = 2;
+    private final int CREATE_CODE = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,14 +93,13 @@ public class MainActivity extends AppCompatActivity {
                         mMapFragment.setRequestLoc(true);
                         break;
                     case LOGIN_CODE :
-                        Intent intent1 = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivity(intent1);
+                        LoginActivity.activityStart(MainActivity.this);
                         break;
-                    case SEARCH_CODE :
-                        Intent intent = new Intent(MainActivity.this, RecordListActivity.class);
-                        startActivity(intent);
+                    case SEEK_CODE :
+                        SeekActivity.activityStart(MainActivity.this);
                         break;
-                    case 3 :
+                    case CREATE_CODE :
+                        CreateActivity.activityStart(MainActivity.this);
                         break;
                 }
             }

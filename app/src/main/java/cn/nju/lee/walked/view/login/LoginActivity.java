@@ -1,5 +1,7 @@
 package cn.nju.lee.walked.view.login;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -28,8 +30,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @BindView(R.id.login_et_password)
     EditText passwordEditText;
 
+    public static void activityStart(Activity activity) {
+        Intent intent = new Intent(activity, LoginActivity.class);
+        activity.startActivity(intent);
+    }
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
