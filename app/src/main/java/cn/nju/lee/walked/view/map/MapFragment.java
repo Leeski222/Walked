@@ -26,7 +26,7 @@ import cn.nju.lee.walked.R;
 import cn.nju.lee.walked.view.map.location.MyLocationClient;
 
 /**
- * Created by 果宝 on 2018/1/12.
+ * Created by 果宝 on 2018/ic_create/12.
  */
 
 public class MapFragment extends Fragment implements MyLocationClient.OnUpdateMyLocationData {

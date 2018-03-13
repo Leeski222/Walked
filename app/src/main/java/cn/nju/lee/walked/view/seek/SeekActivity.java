@@ -25,7 +25,7 @@ import cn.nju.lee.walked.view.signup.SignUpActivity;
 import static com.baidu.mapapi.BMapManager.getContext;
 
 /**
- * Created by 果宝 on 2018/1/20.
+ * Created by 果宝 on 2018/ic_create/20.
  */
 
 public class SeekActivity extends AppCompatActivity {

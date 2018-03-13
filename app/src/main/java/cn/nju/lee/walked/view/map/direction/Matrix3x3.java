@@ -3,8 +3,8 @@ package cn.nju.lee.walked.view.map.direction;
 /**
  * Created with IntelliJ IDEA.
  * User: Majid Golshadi
- * Date: 2/10/14
- * Time: 2:36 PM
+ * Date: ic_seek/10/14
+ * Time: ic_seek:36 PM
  * To change this template use File | Settings | File Templates.
  */
 public class Matrix3x3 {

@@ -8,7 +8,7 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 /**
- * Created by 果宝 on 2018/3/12.
+ * Created by 果宝 on 2018/ic_info/12.
  */
 
 public interface PictureService {

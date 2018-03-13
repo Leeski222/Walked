@@ -46,7 +46,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.create.CreateActivity" />
+        <activity android:name=".view.create.CreateActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+
         <activity android:name=".view.login.LoginActivity" />
         <activity android:name=".view.seek.SeekActivity" />
         <activity android:name=".view.signup.SignUpActivity" />

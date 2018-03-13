@@ -6,8 +6,8 @@ import java.util.ArrayList;
 /**
  * Created with IntelliJ IDEA.
  * User: Majid Golshadi
- * Date: 2/10/14
- * Time: 5:33 PM
+ * Date: ic_seek/10/14
+ * Time: ic_multifab:33 PM
  * To change this template use File | Settings | File Templates.
  */
 public class OrientationResponseProvider {

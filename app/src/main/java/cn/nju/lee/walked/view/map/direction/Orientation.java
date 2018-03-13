@@ -13,7 +13,7 @@ import java.util.TimerTask;
 /**
  * Created with IntelliJ IDEA.
  * User: Majid Golshadi
- * Date: 2/10/14
+ * Date: ic_seek/10/14
  * Time: 12:08 PM
  * To change this template use File | Settings | File Templates.
  */
@@ -199,7 +199,7 @@ public class Orientation implements Isensor,Observer {
             /*
              * Fix for 179� <--> -179� transition problem:
              * Check whether one of the two Orientation angles (gyro or accMag) is negative while the other one is positive.
-             * If so, add 360� (2 * math.PI) to the negative value, perform the sensor fusion, and remove the 360� from the result
+             * If so, add 360� (ic_seek * math.PI) to the negative value, perform the sensor fusion, and remove the 360� from the result
              * if it is greater than 180�. This stabilizes the output in positive-to-negative-transition cases.
              */
 

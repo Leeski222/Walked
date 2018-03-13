@@ -11,7 +11,7 @@ import com.baidu.mapapi.map.MyLocationData;
 import cn.nju.lee.walked.view.map.direction.MyDirectionSensor;
 
 /**
- * Created by 果宝 on 2018/1/16.
+ * Created by 果宝 on 2018/ic_create/16.
  */
 
 public class MyLocationClient {

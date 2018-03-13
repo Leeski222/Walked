@@ -1,7 +1,7 @@
 package cn.nju.lee.walked.model.response;
 
 /**
- * Created by 果宝 on 2018/1/5.
+ * Created by 果宝 on 2018/ic_create/ic_multifab.
  */
 
 public class BaseResponse<T> {

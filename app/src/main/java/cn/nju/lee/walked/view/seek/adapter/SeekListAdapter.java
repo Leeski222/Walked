@@ -14,7 +14,7 @@ import cn.nju.lee.walked.R;
 import cn.nju.lee.walked.model.vopo.RecordVO;
 
 /**
- * Created by 果宝 on 2018/1/20.
+ * Created by 果宝 on 2018/ic_create/20.
  */
 
 public class SeekListAdapter extends RecyclerView.Adapter<SeekListAdapter.Holder> {
@@ -28,7 +28,7 @@ public class SeekListAdapter extends RecyclerView.Adapter<SeekListAdapter.Holder
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View root = LayoutInflater.from(mContext).inflate(R.layout.item_text_record, parent, false);
+        View root = LayoutInflater.from(mContext).inflate(R.layout.view_text_record, parent, false);
         return new Holder(root);
     }
 

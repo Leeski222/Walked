@@ -1,63 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.lzp.floatingactionbuttonplus.FloatingActionButtonPlus
-    android:id="@+id/multifab"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/multi_fab"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    app:borderWidth="0dp"
     app:position="left_bottom"
-    app:switchFabColor="#DB4537"
-    app:switchFabIcon="@mipmap/ic_launcher_round"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    app:switchFabIcon="@drawable/ic_multi_fab">
 
     <com.lzp.floatingactionbuttonplus.FabTagLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:tagText="定位"
-        >
+        app:tagText="定位">
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher_round"
-            app:backgroundTint="#4BB7A7"
+            android:src="@drawable/ic_location"
+            android:scaleType="fitXY"
+            app:borderWidth="0dp"
             app:fabSize="mini" />
     </com.lzp.floatingactionbuttonplus.FabTagLayout>
 
     <com.lzp.floatingactionbuttonplus.FabTagLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:tagText="个人信息"
-        >
+        app:tagText="个人信息">
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher_round"
-            app:backgroundTint="#ff9800"
+            android:src="@drawable/ic_info"
+            android:scaleType="fitXY"
             app:fabSize="mini" />
     </com.lzp.floatingactionbuttonplus.FabTagLayout>
 
     <com.lzp.floatingactionbuttonplus.FabTagLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:tagText="搜索周围"
-        >
+        app:tagText="搜索周围">
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher_round"
-            app:backgroundTint="#473C8B"
+            android:src="@drawable/ic_seek"
+            android:scaleType="fitXY"
             app:fabSize="mini" />
     </com.lzp.floatingactionbuttonplus.FabTagLayout>
 
     <com.lzp.floatingactionbuttonplus.FabTagLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:tagText="发布记录"
-        >
+        app:tagText="发布记录">
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher_round"
-            app:backgroundTint="#4284E4"
+            android:src="@drawable/ic_create"
+            android:scaleType="fitXY"
             app:fabSize="mini" />
     </com.lzp.floatingactionbuttonplus.FabTagLayout>
 

@@ -3,7 +3,7 @@ package cn.nju.lee.walked.model.response;
 import okhttp3.ResponseBody;
 
 /**
- * Created by 果宝 on 2018/3/8.
+ * Created by 果宝 on 2018/ic_info/8.
  */
 
 public class VerificationResponse extends BaseResponse<ResponseBody> {

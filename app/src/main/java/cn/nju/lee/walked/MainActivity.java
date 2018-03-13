@@ -1,6 +1,5 @@
 package cn.nju.lee.walked;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,7 +24,7 @@ import cn.nju.lee.walked.view.seek.SeekActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.multifab)
+    @BindView(R.id.multi_fab)
     FloatingActionButtonPlus mMultiFloatingActionButton;
 
     private MapFragment mMapFragment;

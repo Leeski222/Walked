@@ -27,7 +27,7 @@ import static android.app.Activity.RESULT_OK;
 
 
 /**
- * Created by 果宝 on 2018/3/9.
+ * Created by 果宝 on 2018/ic_info/9.
  */
 
 public class UploadPictureUtil {
@@ -50,7 +50,7 @@ public class UploadPictureUtil {
     public UploadPictureUtil(Activity activity) {
         this.activity = activity;
         this.parent = ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
-        this.popupView = View.inflate(activity, R.layout.popup_select_photo, null);
+        this.popupView = View.inflate(activity, R.layout.view_select_photo, null);
 
         ButterKnife.bind(this, popupView);
 

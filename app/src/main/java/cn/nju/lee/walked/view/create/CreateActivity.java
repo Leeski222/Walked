@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -13,7 +14,7 @@ import cn.nju.lee.walked.R;
 import jp.wasabeef.richeditor.RichEditor;
 
 /**
- * Created by 果宝 on 2018/3/13.
+ * Created by 果宝 on 2018/ic_info/13.
  */
 
 public class CreateActivity extends AppCompatActivity {
@@ -31,6 +32,9 @@ public class CreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
         ButterKnife.bind(this);
+
+        inputRichEditor.setVerticalScrollBarEnabled(true);
+        inputRichEditor.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
     }
 
     @OnClick(R.id.button)

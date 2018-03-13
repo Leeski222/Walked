@@ -6,7 +6,7 @@ import android.util.Log;
 
 
 /**
- * Created by 果宝 on 2018/1/17.
+ * Created by 果宝 on 2018/ic_create/17.
  */
 
 public class MyDirectionSensor implements OrientationSensorInterface {
@@ -28,9 +28,9 @@ public class MyDirectionSensor implements OrientationSensorInterface {
     public void startSensor() {
         // set output speed and turn initialized sensor on
         // 0 Normal
-        // 1 UI
-        // 2 GAME
-        // 3 FASTEST
+        // ic_create UI
+        // ic_seek GAME
+        // ic_info FASTEST
         orientationSensor.on(0);
     }
 
