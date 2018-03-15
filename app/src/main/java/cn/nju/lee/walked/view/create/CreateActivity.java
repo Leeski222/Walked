@@ -33,14 +33,18 @@ public class CreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create);
         ButterKnife.bind(this);
 
+        initInputRichEditor();
+    }
+
+    private void initInputRichEditor() {
         inputRichEditor.setVerticalScrollBarEnabled(true);
         inputRichEditor.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
+
     }
 
     @OnClick(R.id.button)
     void onClick() {
         inputRichEditor.setItalic();
     }
-
 
 }
