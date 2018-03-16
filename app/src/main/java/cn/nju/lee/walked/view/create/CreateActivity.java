@@ -67,5 +67,5 @@ public class CreateActivity extends AppCompatActivity {
         inputRichEditor.setAlignRight();
         this.getInputRichEditorFocus();
     }
-    
+
 }
