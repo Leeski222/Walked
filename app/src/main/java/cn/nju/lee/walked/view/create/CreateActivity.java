@@ -40,11 +40,32 @@ public class CreateActivity extends AppCompatActivity {
         inputRichEditor.setVerticalScrollBarEnabled(true);
         inputRichEditor.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
 
+        this.getInputRichEditorFocus();
     }
 
-    @OnClick(R.id.button)
-    void onClick() {
-        inputRichEditor.setItalic();
+    private void getInputRichEditorFocus() {
+        inputRichEditor.setFocusable(true);
+        inputRichEditor.setFocusableInTouchMode(true);
+        inputRichEditor.requestFocus();
+        inputRichEditor.requestFocusFromTouch();
     }
 
+    @OnClick(R.id.create_iv_justify_left)
+    void justifyLeft() {
+        inputRichEditor.setAlignLeft();
+        this.getInputRichEditorFocus();
+    }
+
+    @OnClick(R.id.create_iv_justify_center)
+    void justifyCenter() {
+        inputRichEditor.setAlignCenter();
+        this.getInputRichEditorFocus();
+    }
+
+    @OnClick(R.id.create_iv_justify_right)
+    void justifyRight() {
+        inputRichEditor.setAlignRight();
+        this.getInputRichEditorFocus();
+    }
+    
 }

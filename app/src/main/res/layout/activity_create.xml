@@ -58,39 +58,40 @@
 
     </jp.wasabeef.richeditor.RichEditor>
 
-    <HorizontalScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_weight="0">
+        android:layout_weight="0"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/create_iv_justify_left"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:src="@drawable/ic_info"
+            android:focusable="false"/>
 
-            <ImageView
-                android:id="@+id/button"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_info"/>
+        <ImageView
+            android:id="@+id/create_iv_justify_center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_info"/>
 
-            <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_info"/>
+        <ImageView
+            android:id="@+id/create_iv_justify_right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_info"/>
 
-            <ImageButton
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_info"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_info"/>
 
-            <ImageButton
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_info"/>
-
-        </LinearLayout>
-
-    </HorizontalScrollView>
+    </LinearLayout>
 
 </LinearLayout>
