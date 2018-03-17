@@ -59,10 +59,12 @@
     </jp.wasabeef.richeditor.RichEditor>
 
     <LinearLayout
+        android:id="@+id/create_ll_function_bar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_weight="0"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="invisible">
 
         <ImageView
             android:id="@+id/create_iv_justify_left"
@@ -87,6 +89,7 @@
             android:src="@drawable/ic_info"/>
 
         <ImageView
+            android:id="@+id/create_iv_insert_picture"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

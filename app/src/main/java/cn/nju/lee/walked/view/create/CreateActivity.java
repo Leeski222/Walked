@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.nju.lee.walked.R;
+import cn.nju.lee.walked.view.widget.SoftKeyboardListener;
 import jp.wasabeef.richeditor.RichEditor;
 
 /**
@@ -21,6 +24,8 @@ public class CreateActivity extends AppCompatActivity {
 
     @BindView(R.id.create_re_input)
     RichEditor inputRichEditor;
+    @BindView(R.id.create_ll_function_bar)
+    LinearLayout functionBar;
 
     public static void activityStart(Activity activity) {
         Intent intent = new Intent(activity, CreateActivity.class);
@@ -34,6 +39,17 @@ public class CreateActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initInputRichEditor();
+        SoftKeyboardListener.setListener(this, new SoftKeyboardListener.OnSoftKeyboardChangeListener() {
+            @Override
+            public void keyBoardShow() {
+                functionBar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void keyBoardHide() {
+                functionBar.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
     private void initInputRichEditor() {
@@ -66,6 +82,11 @@ public class CreateActivity extends AppCompatActivity {
     void justifyRight() {
         inputRichEditor.setAlignRight();
         this.getInputRichEditorFocus();
+    }
+
+    @OnClick(R.id.create_iv_insert_picture)
+    void insertPicture() {
+        inputRichEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/twitter.png","demo");
     }
 
 }
