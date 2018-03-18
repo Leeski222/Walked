@@ -70,13 +70,9 @@ public class MainActivity extends AppCompatActivity {
 
             MapView.setCustomMapStylePath(moduleName + "/map_style");
 
-            if (input != null) {
-                input.close();
-            }
 
-            if (out != null) {
-                out.close();
-            }
+            input.close();
+            out.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

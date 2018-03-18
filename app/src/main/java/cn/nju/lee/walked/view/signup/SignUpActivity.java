@@ -2,9 +2,11 @@ package cn.nju.lee.walked.view.signup;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -23,7 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by 果宝 on 2018/1/20.
  */
 
-public class SignUpActivity extends AppCompatActivity implements SignUpContract.View {
+public class SignUpActivity extends AppCompatActivity implements SignUpContract.View, UploadPictureUtil.OnCropSuccess{
 
     private SignUpContract.Presenter signUpPresenter;
 
@@ -54,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
 
-        this.mUploadPictureUtil = new UploadPictureUtil(this);
+        this.mUploadPictureUtil = new UploadPictureUtil(this, this);
         this.signUpPresenter = new SignUpPresenter(this);
         this.signUpPresenter.start();
     }
@@ -109,5 +111,16 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mUploadPictureUtil. handleActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void setPicture(Bitmap bitmap) {
+        if(bitmap == null) {
+            Toast.makeText(this, "上传图片异常，请重试", Toast.LENGTH_SHORT).show();
+            Log.e("setBitmap", "failed");
+        } else {
+            Log.e("setBitmap", "success");
+            profileCircleImageView.setImageBitmap(bitmap);
+        }
     }
 }

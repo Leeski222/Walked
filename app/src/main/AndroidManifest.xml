@@ -63,7 +63,7 @@
             android:exported="false">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/photopath" />
+                android:resource="@xml/picture_path" />
         </provider>
 
     </application>

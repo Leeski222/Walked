@@ -3,6 +3,7 @@ package cn.nju.lee.walked.view.widget;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -10,14 +11,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.FileNotFoundException;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -39,18 +41,26 @@ public class UploadPictureUtil {
     //剪裁请求码
     private static final int CROP_REQUEST_CODE = 3;
 
-    File tempFile;
+    private File tempFile;
+    private Uri tempUri;
 
     private View parent;
     private View popupView;
-    private Activity activity;
+
+    private Activity mActivity;
+    private OnCropSuccess mOnCropSuccess;
 
     private PopupWindow popupWindow;
 
-    public UploadPictureUtil(Activity activity) {
-        this.activity = activity;
-        this.parent = ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
-        this.popupView = View.inflate(activity, R.layout.view_select_photo, null);
+    public interface OnCropSuccess {
+        void setPicture(Bitmap bitmap);
+    }
+
+    public UploadPictureUtil(Activity activity, OnCropSuccess onCropSuccess) {
+        this.mActivity = activity;
+        this.mOnCropSuccess = onCropSuccess;
+        this.parent = ((ViewGroup) mActivity.findViewById(android.R.id.content)).getChildAt(0);
+        this.popupView = View.inflate(mActivity, R.layout.view_select_photo, null);
 
         ButterKnife.bind(this, popupView);
 
@@ -75,19 +85,19 @@ public class UploadPictureUtil {
     }
 
     @OnClick(R.id.select_photo_tv_open_album)
-    public void openAlbum() {
+    void openAlbum() {
         popupWindow.dismiss();
         getPicFromAlbum();
     }
 
     @OnClick(R.id.select_photo_tv_take_photo)
-    public void takePhoto() {
+    void takePhoto() {
         popupWindow.dismiss();
         getPicFromCamera();
     }
 
     @OnClick(R.id.select_photo_tv_cancel)
-    public void cancel() {
+    void cancel() {
         popupWindow.dismiss();
     }
 
@@ -102,13 +112,13 @@ public class UploadPictureUtil {
         //判断版本
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {   //如果在Android7.0以上,使用FileProvider获取Uri
             intent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            Uri contentUri = FileProvider.getUriForFile(activity, "cn.nju.lee.walked.view", tempFile);
+            Uri contentUri = FileProvider.getUriForFile(mActivity, "cn.nju.lee.walked.view", tempFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
-
+            Log.e("getPicFromCamera", contentUri.toString());
         } else {    //否则使用Uri.fromFile(file)方法获取Uri
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
         }
-        activity.startActivityForResult(intent, CAMERA_REQUEST_CODE);
+        mActivity.startActivityForResult(intent, CAMERA_REQUEST_CODE);
     }
 
     /**
@@ -117,7 +127,7 @@ public class UploadPictureUtil {
     private void getPicFromAlbum() {
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
-        activity.startActivityForResult(photoPickerIntent, ALBUM_REQUEST_CODE);
+        mActivity.startActivityForResult(photoPickerIntent, ALBUM_REQUEST_CODE);
     }
 
     /**
@@ -133,59 +143,50 @@ public class UploadPictureUtil {
         intent.putExtra("aspectY", 1);
         intent.putExtra("outputX", 120);
         intent.putExtra("outputY", 120);
-        intent.putExtra("return-data", true);
-        activity.startActivityForResult(intent, CROP_REQUEST_CODE);
+
+        // 部分国产机型会因为return-data方式而程序崩溃，故应采用uri路径的方式来传递图片
+        intent.putExtra("return-data", false);
+        tempUri = Uri.parse("file://" + "/" + Environment.getExternalStorageDirectory().getPath() + "/" + "uriTemp.jpg");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, tempUri);
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+        mActivity.startActivityForResult(intent, CROP_REQUEST_CODE);
     }
 
     public void handleActivityResult(int requestCode, int resultCode, Intent intent) {
+
         switch (requestCode) {
             case CAMERA_REQUEST_CODE:   //调用相机后返回
                 if (resultCode == RESULT_OK) {
                     //用相机返回的照片去调用剪裁也需要对Uri进行处理
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        Uri contentUri = FileProvider.getUriForFile(activity, "cn.nju.lee.walked.view", tempFile);
+                        Uri contentUri = FileProvider.getUriForFile(mActivity, "cn.nju.lee.walked.view", tempFile);
                         cropPhoto(contentUri);
                     } else {
                         cropPhoto(Uri.fromFile(tempFile));
                     }
                 }
                 break;
+
             case ALBUM_REQUEST_CODE:    //调用相册后返回
                 if (resultCode == RESULT_OK) {
                     Uri uri = intent.getData();
                     cropPhoto(uri);
                 }
                 break;
+
             case CROP_REQUEST_CODE:     //调用剪裁后返回
-                Bundle bundle = intent.getExtras();
-                if (bundle != null) {
+                if(resultCode == RESULT_OK) {
                     //在这里获得了剪裁后的Bitmap对象，可以用于上传
-                    Bitmap image = bundle.getParcelable("data");
-                    //设置到ImageView上
-//                    mHeader_iv.setImageBitmap(image);
-                    //也可以进行一些保存、压缩等操作后上传
-//                    String path = saveImage("crop", image);
+                    try {
+                        Bitmap bitmap = BitmapFactory.decodeStream(mActivity.getContentResolver().openInputStream(tempUri));
+                        mOnCropSuccess.setPicture(bitmap);
+                    } catch (FileNotFoundException e) {
+                        Log.e("crop", "FileNotFoundException");
+                        Toast.makeText(mActivity, "上传图片异常，请重试", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
         }
-    }
 
-    public String saveImage(String name, Bitmap bmp) {
-        File appDir = new File(Environment.getExternalStorageDirectory().getPath());
-        if (!appDir.exists()) {
-            appDir.mkdir();
-        }
-        String fileName = name + ".jpg";
-        File file = new File(appDir, fileName);
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
-            fos.flush();
-            fos.close();
-            return file.getAbsolutePath();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 }

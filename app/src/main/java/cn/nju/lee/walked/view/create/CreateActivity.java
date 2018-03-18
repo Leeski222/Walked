@@ -1,12 +1,15 @@
 package cn.nju.lee.walked.view.create;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 
 import butterknife.BindView;
@@ -15,15 +18,18 @@ import butterknife.OnClick;
 import butterknife.OnFocusChange;
 import cn.nju.lee.walked.R;
 import cn.nju.lee.walked.view.widget.SoftKeyboardListener;
+import cn.nju.lee.walked.view.widget.UploadPictureUtil;
 import jp.wasabeef.richeditor.RichEditor;
 
 /**
  * Created by 果宝 on 2018/3/13.
  */
 
-public class CreateActivity extends AppCompatActivity {
+public class CreateActivity extends AppCompatActivity implements UploadPictureUtil.OnCropSuccess{
 
     private boolean isLockFunctionBar;
+
+    private UploadPictureUtil mUploadPictureUtil;
 
     @BindView(R.id.create_re_input)
     RichEditor inputRichEditor;
@@ -41,15 +47,19 @@ public class CreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create);
         ButterKnife.bind(this);
 
+        this.mUploadPictureUtil = new UploadPictureUtil(this, this);
+
         initInputRichEditor();
         SoftKeyboardListener.setListener(this, new SoftKeyboardListener.OnSoftKeyboardChangeListener() {
             @Override
             public void keyBoardShow() {
+                Log.e("softKey", "show");
                 functionBar.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void keyBoardHide() {
+                Log.e("softKey", "hide");
                 functionBar.setVisibility(View.INVISIBLE);
             }
         });
@@ -61,8 +71,10 @@ public class CreateActivity extends AppCompatActivity {
     @OnFocusChange(R.id.create_et_title)
     void lockFunctionBar(View v, boolean hasFocus) {
         if(hasFocus) {
+            Log.e("softKey", "hasFocus");
             isLockFunctionBar = true;
         } else {
+            Log.e("softKey", "noFocus");
             isLockFunctionBar = false;
         }
     }
@@ -100,10 +112,21 @@ public class CreateActivity extends AppCompatActivity {
 
     @OnClick(R.id.create_iv_insert_picture)
     void insertPicture() {
+        // 适应屏幕大小的参数
         final String fitScreen = "\" style=\"max-width:100%";
         if(!isLockFunctionBar) {
+            // 隐藏软键盘
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(inputRichEditor.getApplicationWindowToken(), 0);
+
+            mUploadPictureUtil.showPopupWindow();
             inputRichEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/twitter.png", "demo" + fitScreen);
         }
+    }
+
+    @Override
+    public void setPicture(Bitmap bitmap) {
+
     }
 
     @OnClick(R.id.print)
@@ -112,5 +135,11 @@ public class CreateActivity extends AppCompatActivity {
         if(str != null) {
             Log.e("content", str);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mUploadPictureUtil.handleActivityResult(requestCode, resultCode, data);
     }
 }

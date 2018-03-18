@@ -42,10 +42,10 @@ public class PermissionUtil {
     public void getPermissions(Activity activity) {
         if(Build.VERSION.SDK_INT >= 23) {
             this.callActivity = activity;
-            if (EasyPermissions.hasPermissions(activity, permissions)) { //检查是否获取该权限
-                Log.i("getPermission", "已获取权限");
+            if (EasyPermissions.hasPermissions(callActivity, permissions)) { //检查是否获取该权限
+                Log.e("getPermission", "已获取权限");
             } else {
-                EasyPermissions.requestPermissions(activity, "必要的权限", 0, permissions);
+                EasyPermissions.requestPermissions(callActivity, "必要的权限", 0, permissions);
             }
         }
     }
@@ -56,11 +56,11 @@ public class PermissionUtil {
     }
 
     public void onPermissionsGranted(int requestCode, List<String> perms) {
-        Log.i("PermissionUtil", "获取成功的权限" + perms);
+        Log.e("PermissionUtil", "获取成功的权限" + perms);
     }
 
     public void onPermissionsDenied(int requestCode, List<String> perms) {
-        Log.i("PermissionUtil", "获取成功的权限" + perms);
+        Log.e("PermissionUtil", "获取成功的权限" + perms);
     }
 
 }

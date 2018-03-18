@@ -5,6 +5,7 @@
     android:id="@+id/multi_fab"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    app:switchFabColor="@color/colorPrimary"
     app:borderWidth="0dp"
     app:position="left_bottom"
     app:switchFabIcon="@drawable/ic_multi_fab">
