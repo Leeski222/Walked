@@ -1,6 +1,6 @@
 package cn.nju.lee.walked.view.seek.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,17 +11,18 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.nju.lee.walked.R;
-import cn.nju.lee.walked.model.vopo.RecordVO;
+import cn.nju.lee.walked.model.vopo.TrackVO;
+import cn.nju.lee.walked.view.track.TrackActivity;
 
 /**
  * Created by 果宝 on 2018/ic_create/20.
  */
 
 public class SeekListAdapter extends RecyclerView.Adapter<SeekListAdapter.Holder> {
-    private Context mContext;
-    private List<RecordVO> recordList;
+    private Activity mContext;
+    private List<TrackVO> recordList;
 
-    public SeekListAdapter(Context context, List<RecordVO> recordList) {
+    public SeekListAdapter(Activity context, List<TrackVO> recordList) {
         this.mContext = context;
         this.recordList = recordList;
     }
@@ -34,12 +35,12 @@ public class SeekListAdapter extends RecyclerView.Adapter<SeekListAdapter.Holder
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        RecordVO recordVO = recordList.get(position);
-//        holder.userProfile.setImageResource(recordVO.getProfile());
-        holder.userName.setText(recordVO.getUsername());
-        holder.textContent.setText(recordVO.getContent());
-        holder.createDate.setText(recordVO.getCreateDate());
-        holder.thumbUpNum.setText(recordVO.getThumbUpNum());
+        TrackVO trackVO = recordList.get(position);
+//        holder.userProfile.setImageResource(trackVO.getProfile());
+        holder.userName.setText(trackVO.getUsername());
+        holder.textContent.setText(trackVO.getContent());
+        holder.createDate.setText(trackVO.getCreateDate());
+        holder.thumbUpNum.setText(trackVO.getThumbUpNum());
     }
 
     @Override
@@ -70,12 +71,13 @@ public class SeekListAdapter extends RecyclerView.Adapter<SeekListAdapter.Holder
         @Override
         public void onClick(View v) {
             int pos = getAdapterPosition();
-            RecordVO recordVO = recordList.get(pos);
+            TrackVO trackVO = recordList.get(pos);
             switch (v.getId()) {
                 case R.id.text_record:
 //                    Intent intent = new Intent(getActivity(), VolDetailActivity.class);
 //                    intent.putExtra("vol", vol);
 //                    startActivity(intent);
+                    TrackActivity.activityStart(mContext);
                     break;
             }
         }

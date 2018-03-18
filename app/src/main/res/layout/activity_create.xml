@@ -43,6 +43,7 @@
     </LinearLayout>
 
     <EditText
+        android:id="@+id/create_et_title"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="标题(选填)"/>
@@ -90,6 +91,13 @@
 
         <ImageView
             android:id="@+id/create_iv_insert_picture"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_info"/>
+
+        <ImageView
+            android:id="@+id/print"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

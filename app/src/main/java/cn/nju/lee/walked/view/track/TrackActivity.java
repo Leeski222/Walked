@@ -6,14 +6,20 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cn.nju.lee.walked.R;
+import jp.wasabeef.richeditor.RichEditor;
 
 
 /**
- * Created by 果宝 on 2018/ic_create/20.
+ * Created by 果宝 on 2018/1/20.
  */
 
 public class TrackActivity extends AppCompatActivity {
+
+    @BindView(R.id.track_re_content)
+    RichEditor contentRichEditor;
 
     public static void activityStart(Activity activity) {
         Intent intent = new Intent(activity, TrackActivity.class);
@@ -24,6 +30,13 @@ public class TrackActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track);
+        ButterKnife.bind(this);
+
+        initContentRichEditor();
+    }
+
+    private void initContentRichEditor() {
+        contentRichEditor.setInputEnabled(false);
     }
 
 }

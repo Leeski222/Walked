@@ -10,7 +10,7 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 /**
- * Created by 果宝 on 2018/ic_info/7.
+ * Created by 果宝 on 2018/3/7.
  */
 
 public class LoginPresenter implements LoginContract.Presenter{

@@ -12,15 +12,18 @@ import android.widget.LinearLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnFocusChange;
 import cn.nju.lee.walked.R;
 import cn.nju.lee.walked.view.widget.SoftKeyboardListener;
 import jp.wasabeef.richeditor.RichEditor;
 
 /**
- * Created by 果宝 on 2018/ic_info/13.
+ * Created by 果宝 on 2018/3/13.
  */
 
 public class CreateActivity extends AppCompatActivity {
+
+    private boolean isLockFunctionBar;
 
     @BindView(R.id.create_re_input)
     RichEditor inputRichEditor;
@@ -52,41 +55,62 @@ public class CreateActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * 如果选择的输入框是题目，则锁定功能栏
+     */
+    @OnFocusChange(R.id.create_et_title)
+    void lockFunctionBar(View v, boolean hasFocus) {
+        if(hasFocus) {
+            isLockFunctionBar = true;
+        } else {
+            isLockFunctionBar = false;
+        }
+    }
+
     private void initInputRichEditor() {
         inputRichEditor.setVerticalScrollBarEnabled(true);
         inputRichEditor.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
 
-        this.getInputRichEditorFocus();
-    }
-
-    private void getInputRichEditorFocus() {
-        inputRichEditor.setFocusable(true);
-        inputRichEditor.setFocusableInTouchMode(true);
-        inputRichEditor.requestFocus();
-        inputRichEditor.requestFocusFromTouch();
+        inputRichEditor.focusEditor();
     }
 
     @OnClick(R.id.create_iv_justify_left)
     void justifyLeft() {
-        inputRichEditor.setAlignLeft();
-        this.getInputRichEditorFocus();
+        if(!isLockFunctionBar) {
+            inputRichEditor.setAlignLeft();
+            inputRichEditor.focusEditor();
+        }
     }
 
     @OnClick(R.id.create_iv_justify_center)
     void justifyCenter() {
-        inputRichEditor.setAlignCenter();
-        this.getInputRichEditorFocus();
+        if(!isLockFunctionBar) {
+            inputRichEditor.setAlignCenter();
+            inputRichEditor.focusEditor();
+        }
     }
 
     @OnClick(R.id.create_iv_justify_right)
     void justifyRight() {
-        inputRichEditor.setAlignRight();
-        this.getInputRichEditorFocus();
+        if(!isLockFunctionBar) {
+            inputRichEditor.setAlignRight();
+            inputRichEditor.focusEditor();
+        }
     }
 
     @OnClick(R.id.create_iv_insert_picture)
     void insertPicture() {
-        inputRichEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/twitter.png","demo");
+        final String fitScreen = "\" style=\"max-width:100%";
+        if(!isLockFunctionBar) {
+            inputRichEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/twitter.png", "demo" + fitScreen);
+        }
     }
 
+    @OnClick(R.id.print)
+    void print() {
+        String str = inputRichEditor.getHtml();
+        if(str != null) {
+            Log.e("content", str);
+        }
+    }
 }

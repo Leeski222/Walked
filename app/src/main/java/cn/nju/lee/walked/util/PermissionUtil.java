@@ -10,7 +10,7 @@ import java.util.List;
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
- * Created by 果宝 on 2018/ic_create/13.
+ * Created by 果宝 on 2018/1/13.
  * 专门负责动态权限管理的类
  */
 

@@ -27,7 +27,7 @@ import static android.app.Activity.RESULT_OK;
 
 
 /**
- * Created by 果宝 on 2018/ic_info/9.
+ * Created by 果宝 on 2018/3/9.
  */
 
 public class UploadPictureUtil {

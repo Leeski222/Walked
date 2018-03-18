@@ -12,7 +12,7 @@
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/record_civ_profile"
+            android:id="@+id/track_civ_profile"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -26,7 +26,7 @@
             android:layout_weight="5">
 
             <TextView
-                android:id="@+id/record_tv_username"
+                android:id="@+id/track_tv_username"
                 android:textSize="16sp"
                 android:textColor="@color/colorBlack"
                 android:gravity="center_vertical|left"
@@ -36,7 +36,7 @@
                 android:text="@string/demo_username1"/>
 
             <TextView
-                android:id="@+id/record_tv_date"
+                android:id="@+id/track_tv_date"
                 android:gravity="center_vertical|left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,33 +53,24 @@
         android:layout_width="match_parent"
         android:layout_height="0.2dp"/>
 
-    <ScrollView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <TextView
+            android:id="@+id/track_tv_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="48dp"
+            android:text="题目"/>
 
-            <TextView
-                android:id="@+id/record_tv_title"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="题目"/>
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/record_tv_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:text="内容"/>
-
-        </LinearLayout>
-
-    </ScrollView>
+    <jp.wasabeef.richeditor.RichEditor
+        android:id="@+id/track_re_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -87,14 +78,14 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/record_btn_thumbup"
+            android:id="@+id/track_btn_thumbup"
             android:text="@string/thumb_up"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/record_btn_collect"
+            android:id="@+id/track_btn_collect"
             android:text="@string/collect"
             android:layout_width="0dp"
             android:layout_height="48dp"

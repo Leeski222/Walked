@@ -18,21 +18,20 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.nju.lee.walked.R;
-import cn.nju.lee.walked.model.vopo.RecordVO;
+import cn.nju.lee.walked.model.vopo.TrackVO;
 import cn.nju.lee.walked.view.seek.adapter.SeekListAdapter;
-import cn.nju.lee.walked.view.signup.SignUpActivity;
 
 import static com.baidu.mapapi.BMapManager.getContext;
 
 /**
- * Created by 果宝 on 2018/ic_create/20.
+ * Created by 果宝 on 2018/1/20.
  */
 
 public class SeekActivity extends AppCompatActivity {
 
     private boolean isRefresh;
 
-    private List<RecordVO> recordVOList;
+    private List<TrackVO> trackVOList;
 
     private SeekListAdapter adapter;
 
@@ -52,8 +51,8 @@ public class SeekActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seek);
         ButterKnife.bind(this);
-        initRecordList();
-        adapter = new SeekListAdapter(getContext(), recordVOList);
+        initTrackList();
+        adapter = new SeekListAdapter(this, trackVOList);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mSwipeRefreshLayout.setOnRefreshListener(new RefreshListener());
@@ -62,13 +61,13 @@ public class SeekActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        mRecyclerView.setAdapter(new SeekListAdapter(getContext(), recordVOList));
+        mRecyclerView.setAdapter(new SeekListAdapter(this, trackVOList));
     }
 
-    private void initRecordList() {
-        recordVOList = new ArrayList<>();
+    private void initTrackList() {
+        trackVOList = new ArrayList<>();
         for(int i = 0; i < 10; i ++) {
-            recordVOList.add(new RecordVO("周围子", "2017年9月7日",
+            trackVOList.add(new TrackVO("周围子", "2017年9月7日",
                     "一个专拍表情包的伪文青我对韩寒并不是很了解，小时候忠于漫画却不是很爱小说。第一次接触到跟韩寒有关的是《后会无期》这部电影。我喜欢那里面的人物那种没有结局的结局，人生不到最后一刻，哪有结局。"
                      +
                     "\n",

@@ -4,7 +4,7 @@ package cn.nju.lee.walked.model.vopo;
  * Created by 果宝 on 2018/ic_create/20.
  */
 
-public class RecordVO {
+public class TrackVO {
 
     private String username;
 
@@ -14,7 +14,7 @@ public class RecordVO {
 
     private String thumbUpNum;
 
-    public RecordVO(String username, String createDate, String content, String thumbUpNum) {
+    public TrackVO(String username, String createDate, String content, String thumbUpNum) {
         this.username = username;
         this.createDate = createDate;
         this.content = content;
