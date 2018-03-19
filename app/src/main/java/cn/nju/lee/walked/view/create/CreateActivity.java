@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -53,13 +54,11 @@ public class CreateActivity extends AppCompatActivity implements UploadPictureUt
         SoftKeyboardListener.setListener(this, new SoftKeyboardListener.OnSoftKeyboardChangeListener() {
             @Override
             public void keyBoardShow() {
-                Log.e("softKey", "show");
                 functionBar.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void keyBoardHide() {
-                Log.e("softKey", "hide");
                 functionBar.setVisibility(View.INVISIBLE);
             }
         });
@@ -71,10 +70,8 @@ public class CreateActivity extends AppCompatActivity implements UploadPictureUt
     @OnFocusChange(R.id.create_et_title)
     void lockFunctionBar(View v, boolean hasFocus) {
         if(hasFocus) {
-            Log.e("softKey", "hasFocus");
             isLockFunctionBar = true;
         } else {
-            Log.e("softKey", "noFocus");
             isLockFunctionBar = false;
         }
     }
@@ -112,21 +109,22 @@ public class CreateActivity extends AppCompatActivity implements UploadPictureUt
 
     @OnClick(R.id.create_iv_insert_picture)
     void insertPicture() {
-        // 适应屏幕大小的参数
-        final String fitScreen = "\" style=\"max-width:100%";
+
         if(!isLockFunctionBar) {
             // 隐藏软键盘
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(inputRichEditor.getApplicationWindowToken(), 0);
 
             mUploadPictureUtil.showPopupWindow();
-            inputRichEditor.insertImage("https://raw.githubusercontent.com/wasabeef/art/master/twitter.png", "demo" + fitScreen);
         }
     }
 
     @Override
-    public void setPicture(Bitmap bitmap) {
+    public void setPictureUri(Uri uri) {
+        // 适应屏幕大小的参数
+        final String fitScreen = "\" style=\"max-width:100%";
 
+        inputRichEditor.insertImage(uri.toString(), uri.toString() + fitScreen);
     }
 
     @OnClick(R.id.print)

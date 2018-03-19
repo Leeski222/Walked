@@ -3,6 +3,8 @@ package cn.nju.lee.walked.view.signup;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,8 @@ import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.FileNotFoundException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -114,13 +118,21 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     }
 
     @Override
-    public void setPicture(Bitmap bitmap) {
+    public void setPictureUri(Uri uri) {
+
+        Bitmap bitmap = null;
+
+        try {
+            bitmap = BitmapFactory.decodeStream(this.getContentResolver().openInputStream(uri));
+        } catch (FileNotFoundException e) {
+            Toast.makeText(this, "上传图片异常，请重试", Toast.LENGTH_SHORT).show();
+        }
+
         if(bitmap == null) {
             Toast.makeText(this, "上传图片异常，请重试", Toast.LENGTH_SHORT).show();
-            Log.e("setBitmap", "failed");
         } else {
-            Log.e("setBitmap", "success");
             profileCircleImageView.setImageBitmap(bitmap);
         }
+
     }
 }

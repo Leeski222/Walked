@@ -5,8 +5,8 @@
     android:id="@+id/multi_fab"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:switchFabColor="@color/colorPrimary"
-    app:borderWidth="0dp"
+    android:alpha="0.9"
+    app:switchFabColor="#54bbb5"
     app:position="left_bottom"
     app:switchFabIcon="@drawable/ic_multi_fab">
 
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_location"
             android:scaleType="fitXY"
-            app:borderWidth="0dp"
+            app:backgroundTint="#c78194"
             app:fabSize="mini" />
     </com.lzp.floatingactionbuttonplus.FabTagLayout>
 
@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_info"
             android:scaleType="fitXY"
+            app:backgroundTint="#e9b4c8"
             app:fabSize="mini" />
     </com.lzp.floatingactionbuttonplus.FabTagLayout>
 
@@ -44,6 +45,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_seek"
             android:scaleType="fitXY"
+            app:backgroundTint="#b1d9ce"
             app:fabSize="mini" />
     </com.lzp.floatingactionbuttonplus.FabTagLayout>
 
@@ -56,6 +58,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_create"
             android:scaleType="fitXY"
+            app:backgroundTint="#87b3b2"
             app:fabSize="mini" />
     </com.lzp.floatingactionbuttonplus.FabTagLayout>
 
