@@ -3,6 +3,7 @@ package cn.nju.lee.walked.view.widget;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -13,8 +14,10 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -105,11 +108,13 @@ public class UploadPictureUtil {
         //跳转到调用系统相机
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //判断版本
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {   //如果在Android7.0以上,使用FileProvider获取Uri
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            //如果在Android7.0以上,使用FileProvider获取Uri
             intent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             Uri contentUri = FileProvider.getUriForFile(mActivity, "cn.nju.lee.walked.view", tempFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
-        } else {    //否则使用Uri.fromFile(file)方法获取Uri
+        } else {
+            //否则使用Uri.fromFile(file)方法获取Uri
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
         }
         mActivity.startActivityForResult(intent, CAMERA_REQUEST_CODE);
@@ -135,8 +140,8 @@ public class UploadPictureUtil {
         intent.putExtra("crop", "true");
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", 120);
-        intent.putExtra("outputY", 120);
+        intent.putExtra("outputX", 240);
+        intent.putExtra("outputY", 240);
 
         // 部分国产机型会因为return-data方式而程序崩溃，故应采用uri路径的方式来传递图片
         intent.putExtra("return-data", false);
