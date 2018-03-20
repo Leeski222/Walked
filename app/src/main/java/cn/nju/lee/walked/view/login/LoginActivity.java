@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         ButterKnife.bind(this);
         this.loginPresenter = new LoginPresenter(this);
         this.loginPresenter.start();
+        Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -37,6 +37,7 @@ public class TrackActivity extends AppCompatActivity {
 
     private void initContentRichEditor() {
         contentRichEditor.setInputEnabled(false);
+        contentRichEditor.setHtml(" 1他姐姐<img src=\"https://raw.githubusercontent.com/wasabeef/art/master/chip.jpg\" alt=\"https://raw.githubusercontent.com/wasabeef/art/master/twitter.png\" style=\"max-width:100%\"><br><div style=\"text-align: center;\">他安环</div><div style=\"text-align: center;\">谈谈</div>");
     }
 
 }

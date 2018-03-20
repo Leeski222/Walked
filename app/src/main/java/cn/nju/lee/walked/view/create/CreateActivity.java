@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 
+import com.baidu.mapapi.map.MyLocationData;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -28,6 +30,12 @@ import jp.wasabeef.richeditor.RichEditor;
 
 public class CreateActivity extends AppCompatActivity implements UploadPictureUtil.OnCropSuccess{
 
+    private static final String ARG_LOCATION_LATITUDE = "latitude";
+    private double locationLatitude;
+
+    private static final String ARG_LOCATION_LONGITUDE = "longitude";
+    private double locationLongitude;
+
     private boolean isLockFunctionBar;
 
     private UploadPictureUtil mUploadPictureUtil;
@@ -37,8 +45,10 @@ public class CreateActivity extends AppCompatActivity implements UploadPictureUt
     @BindView(R.id.create_ll_function_bar)
     LinearLayout functionBar;
 
-    public static void activityStart(Activity activity) {
+    public static void activityStart(Activity activity, double latitude, double longitude) {
         Intent intent = new Intent(activity, CreateActivity.class);
+        intent.putExtra(ARG_LOCATION_LATITUDE, latitude);
+        intent.putExtra(ARG_LOCATION_LONGITUDE, longitude);
         activity.startActivity(intent);
     }
 
@@ -48,6 +58,8 @@ public class CreateActivity extends AppCompatActivity implements UploadPictureUt
         setContentView(R.layout.activity_create);
         ButterKnife.bind(this);
 
+        this.locationLatitude = getIntent().getDoubleExtra(ARG_LOCATION_LATITUDE, 0.00);
+        this.locationLongitude = getIntent().getDoubleExtra(ARG_LOCATION_LONGITUDE, 0.00);
         this.mUploadPictureUtil = new UploadPictureUtil(this, this);
 
         initInputRichEditor();

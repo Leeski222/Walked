@@ -20,7 +20,7 @@ public class MyLocationClient {
     private MyDirectionSensor myDirectionSensor;
 
     // 更新定位的回调接口
-    private OnUpdateMyLocationData onUpdateMyLocationData;
+    private OnUpdateMyLocationData mOnUpdateMyLocationData;
     public interface OnUpdateMyLocationData {
         void updateMyLocationData(MyLocationData locData);
     }
@@ -28,7 +28,7 @@ public class MyLocationClient {
     public MyLocationClient(Context context, OnUpdateMyLocationData onUpdateMyLocationData) {
         this.mLocationClient = new LocationClient(context);
         this.myDirectionSensor = new MyDirectionSensor(context);
-        this.onUpdateMyLocationData = onUpdateMyLocationData;
+        this.mOnUpdateMyLocationData = onUpdateMyLocationData;
         initClient();
     }
 
@@ -115,7 +115,7 @@ public class MyLocationClient {
                     .longitude(bdLocation.getLongitude())
                     .build();
 
-            onUpdateMyLocationData.updateMyLocationData(locData);
+            mOnUpdateMyLocationData.updateMyLocationData(locData);
         }
     }
 }

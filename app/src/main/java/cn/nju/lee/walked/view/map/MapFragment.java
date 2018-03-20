@@ -37,6 +37,9 @@ public class MapFragment extends Fragment implements MyLocationClient.OnUpdateMy
     // 是否请求归位
     private boolean isRequestLoc;
 
+    // 用户当前的位置
+    private MyLocationData locationData;
+
     @BindView(R.id.map_baidu)
     MapView mMapView;
 
@@ -158,14 +161,24 @@ public class MapFragment extends Fragment implements MyLocationClient.OnUpdateMy
     }
 
     /**
+     * 获得用户的当前定位
+     */
+    public MyLocationData getUserLocation() {
+        return this.locationData;
+    }
+
+    /**
      * 供MyLocationClient回调的方法
      * MyLocationClient收到新的定位数据后会立刻回调该方法
      * @param locData
      */
     @Override
     public void updateMyLocationData(MyLocationData locData) {
+
+        locationData = locData;
+
         // 设置定位数据
-        mBaiduMap.setMyLocationData(locData);
+        mBaiduMap.setMyLocationData(locationData);
 
         if(isRequestLoc || isFirstLoc) {
             isFirstLoc = false;

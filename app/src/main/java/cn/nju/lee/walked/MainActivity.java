@@ -3,9 +3,11 @@ package cn.nju.lee.walked;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.MyLocationData;
 import com.lzp.floatingactionbuttonplus.FabTagLayout;
 import com.lzp.floatingactionbuttonplus.FloatingActionButtonPlus;
 
@@ -83,10 +85,16 @@ public class MainActivity extends AppCompatActivity {
         mMultiFloatingActionButton.setOnItemClickListener(new FloatingActionButtonPlus.OnItemClickListener() {
             @Override
             public void onItemClick(FabTagLayout tagView, int position) {
+                if(position == LOCATION_CODE) {
+                    mMapFragment.setRequestLoc(true);
+                }
+
+                boolean isLogin = true;
+                if(!isLogin) {
+                    LoginActivity.activityStart(MainActivity.this);
+                }
+
                 switch (position) {
-                    case LOCATION_CODE:
-                        mMapFragment.setRequestLoc(true);
-                        break;
                     case LOGIN_CODE :
                         LoginActivity.activityStart(MainActivity.this);
                         break;
@@ -94,7 +102,11 @@ public class MainActivity extends AppCompatActivity {
                         SeekActivity.activityStart(MainActivity.this);
                         break;
                     case CREATE_CODE :
-                        CreateActivity.activityStart(MainActivity.this);
+                        mMapFragment.onPause();
+                        MyLocationData locationData = mMapFragment.getUserLocation();
+                        Log.e("locationData", locationData.latitude + " " + locationData.longitude);
+                        CreateActivity.activityStart(MainActivity.this, locationData.latitude, locationData.longitude);
+                        mMapFragment.onResume();
                         break;
                 }
             }
