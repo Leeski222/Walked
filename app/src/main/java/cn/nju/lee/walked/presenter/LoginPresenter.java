@@ -30,6 +30,7 @@ public class LoginPresenter implements LoginContract.Presenter{
 
     @Override
     public void login(String email, String password) {
+        Log.e("login", email + " " + password);
         loginModel.login(new Observer<LoginResponse>() {
             @Override
             public void onSubscribe(Disposable d) {

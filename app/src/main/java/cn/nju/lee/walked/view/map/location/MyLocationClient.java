@@ -17,7 +17,7 @@ import cn.nju.lee.walked.view.map.direction.MyDirectionSensor;
 public class MyLocationClient {
 
     private LocationClient mLocationClient;
-    private MyDirectionSensor myDirectionSensor;
+    private MyDirectionSensor mDirectionSensor;
 
     // 更新定位的回调接口
     private OnUpdateMyLocationData mOnUpdateMyLocationData;
@@ -27,7 +27,7 @@ public class MyLocationClient {
 
     public MyLocationClient(Context context, OnUpdateMyLocationData onUpdateMyLocationData) {
         this.mLocationClient = new LocationClient(context);
-        this.myDirectionSensor = new MyDirectionSensor(context);
+        this.mDirectionSensor = new MyDirectionSensor(context);
         this.mOnUpdateMyLocationData = onUpdateMyLocationData;
         initClient();
     }
@@ -75,22 +75,22 @@ public class MyLocationClient {
 
     public void startClient() {
         mLocationClient.start();
-        myDirectionSensor.startSensor();
+        mDirectionSensor.startSensor();
     }
 
     public void resumeClient() {
         mLocationClient.registerLocationListener(new MyLocationListener());
-        myDirectionSensor.startSensor();
+        mDirectionSensor.startSensor();
     }
 
     public void pauseClient() {
         mLocationClient.unRegisterLocationListener(new MyLocationListener());
-        myDirectionSensor.stopSensor();
+        mDirectionSensor.stopSensor();
     }
 
     public void stopClient() {
         mLocationClient.stop();
-        myDirectionSensor.stopSensor();
+        mDirectionSensor.stopSensor();
     }
 
     /**
@@ -101,7 +101,7 @@ public class MyLocationClient {
 
         @Override
         public void onReceiveLocation(BDLocation bdLocation) {
-            float direction = myDirectionSensor.getDirection();
+            float direction = mDirectionSensor.getDirection();
 
             // 构造定位数据
             MyLocationData locData = new MyLocationData.Builder()

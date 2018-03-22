@@ -22,7 +22,6 @@ import cn.nju.lee.walked.util.PermissionUtil;
 import cn.nju.lee.walked.view.create.CreateActivity;
 import cn.nju.lee.walked.view.login.LoginActivity;
 import cn.nju.lee.walked.view.map.MapFragment;
-import cn.nju.lee.walked.view.seek.SeekActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -72,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
             MapView.setCustomMapStylePath(moduleName + "/map_style");
 
-
             input.close();
             out.close();
         } catch (IOException e) {
@@ -99,7 +97,8 @@ public class MainActivity extends AppCompatActivity {
                         LoginActivity.activityStart(MainActivity.this);
                         break;
                     case SEEK_CODE :
-                        SeekActivity.activityStart(MainActivity.this);
+                        mMapFragment.seekTracks();
+//                        SeekActivity.activityStart(MainActivity.this);
                         break;
                     case CREATE_CODE :
                         mMapFragment.onPause();

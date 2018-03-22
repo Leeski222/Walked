@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @OnClick(R.id.login_btn_signin)
     void login() {
         String username = usernameEditText.getText().toString();
-        String password = usernameEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
         loginPresenter.login(username, password);
     }
 

@@ -23,6 +23,7 @@ import com.baidu.mapapi.model.LatLng;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.nju.lee.walked.R;
+import cn.nju.lee.walked.view.map.draw.MyDrawTool;
 import cn.nju.lee.walked.view.map.location.MyLocationClient;
 
 /**
@@ -46,6 +47,7 @@ public class MapFragment extends Fragment implements MyLocationClient.OnUpdateMy
     private BaiduMap mBaiduMap;
 
     private MyLocationClient myLocationClient;
+    private MyDrawTool myDrawTool;
 
     @Nullable
     @Override
@@ -89,6 +91,7 @@ public class MapFragment extends Fragment implements MyLocationClient.OnUpdateMy
                 MapView.setMapCustomEnable(true);
             }
         });
+        myDrawTool = new MyDrawTool(mBaiduMap);
         myLocationClient = new MyLocationClient(getActivity().getApplicationContext(), this);
         myLocationClient.startClient();
     }
@@ -135,7 +138,7 @@ public class MapFragment extends Fragment implements MyLocationClient.OnUpdateMy
         mBaiduMap.setMyLocationConfiguration(config);
 
         // 设置定位图层的初始层级
-        int initLevel = 20;
+        final int initLevel = 20;
         MapStatus mMapStatus = new MapStatus.Builder().zoom(initLevel).build();
         MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
         mBaiduMap.setMapStatus(mMapStatusUpdate);
@@ -146,7 +149,6 @@ public class MapFragment extends Fragment implements MyLocationClient.OnUpdateMy
      * @param locData
      */
     private void showUserLocation(MyLocationData locData) {
-        int initLevel = 20;
         LatLng latLng = new LatLng(locData.latitude, locData.longitude);
         MapStatusUpdate mapStatusUpdate  = MapStatusUpdateFactory.newLatLng(latLng);
         mBaiduMap.animateMapStatus(mapStatusUpdate);
@@ -165,6 +167,15 @@ public class MapFragment extends Fragment implements MyLocationClient.OnUpdateMy
      */
     public MyLocationData getUserLocation() {
         return this.locationData;
+    }
+
+    /**
+     * 寻找用户当前定位周围的记录
+     */
+    public void seekTracks() {
+        double latitude = locationData.latitude;
+        double longitude = locationData.longitude;
+        myDrawTool.drawTrackMarket(latitude, longitude, MyDrawTool.NORMAL_TRACK_MAKERT);
     }
 
     /**

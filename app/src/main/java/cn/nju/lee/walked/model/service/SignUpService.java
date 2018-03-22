@@ -18,7 +18,6 @@ public interface SignUpService {
 
     @Headers({
             "Content-Type: application/json",
-            "Accept: application/json"
     })
     @POST("/users")
     Observable<SignUpResponse> signUp(
