@@ -1,7 +1,5 @@
 package cn.nju.lee.walked.model.response;
 
-import okhttp3.Response;
-
 /**
  * Created by 果宝 on 2018/ic_create/ic_multifab.
  */
