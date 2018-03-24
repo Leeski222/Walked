@@ -31,6 +31,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SignUpActivity extends AppCompatActivity implements SignUpContract.View, UploadPictureUtil.OnCropSuccess{
 
+    public static final int SIGN_UP_SUCCESS_CODE = 1;
+    public static final String SIGN_UP_SUCCESS_EMAIL = "email";
+
     private SignUpContract.Presenter signUpPresenter;
 
     private UploadPictureUtil mUploadPictureUtil;
@@ -49,9 +52,9 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     @BindView(R.id.signup_cb_accept_protocol)
     CheckBox acceptProtocolCheckBox;
 
-    public static void activityStart(Activity activity) {
+    public static void activityStart(Activity activity, int requestCode) {
         Intent intent = new Intent(activity, SignUpActivity.class);
-        activity.startActivity(intent);
+        activity.startActivityForResult(intent, requestCode);
     }
 
     @Override
@@ -72,7 +75,11 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     @Override
     public void signUpSuccess() {
-
+        Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent();
+        intent.putExtra(SIGN_UP_SUCCESS_EMAIL, emailEditText.getText().toString() );
+        this.setResult(SIGN_UP_SUCCESS_CODE, intent);
+        finish();
     }
 
     @Override
@@ -100,6 +107,16 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     @Override
     public void emailFormatInvalid() {
         Toast.makeText(this, "邮箱格式错误", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void sendVerificationSuccess() {
+        Toast.makeText(this, "已发送，请注意查收", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void sendVerificationFailed() {
+        Toast.makeText(this, "发送失败，请重试", Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.signup_btn_signup)

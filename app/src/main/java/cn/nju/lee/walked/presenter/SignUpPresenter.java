@@ -1,21 +1,20 @@
 package cn.nju.lee.walked.presenter;
 
-import android.util.Log;
-
 import java.io.File;
 import java.util.regex.Pattern;
 
 import cn.nju.lee.walked.contract.SignUpContract;
 import cn.nju.lee.walked.model.ModelRepository;
 import cn.nju.lee.walked.model.modelinterface.SignUpModel;
-import cn.nju.lee.walked.model.postbean.SignUpBean;
 import cn.nju.lee.walked.model.response.SignUpResponse;
 import cn.nju.lee.walked.model.response.VerificationResponse;
 import cn.nju.lee.walked.model.vopo.VerificationPO;
-import cn.nju.lee.walked.util.GsonUtil;
+import cn.nju.lee.walked.util.SignUpResult;
+
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import okhttp3.RequestBody;
+
+import retrofit2.Response;
 
 /**
  * Created by 果宝 on 2018/3/7.
@@ -42,37 +41,39 @@ public class SignUpPresenter implements SignUpContract.Presenter{
     @Override
     public void signUp(File file, String email, String username, String password, String verification) {
 
-//        if(!isEmailFormatValid(email)) {
-//            signUpView.emailFormatInvalid();
-//            return;
-//        }
-//
-//        if(verification.equals(null) || verification.equals("")) {
-//            signUpView.verificationEmpty();
-//            return;
-//        }
-//
-//        if(!email.equals(verificationEmail) || !verification.equals(verificationCode)) {
-//            signUpView.verificationError();
-//            return;
-//        }
+        if(!isEmailFormatValid(email)) {
+            signUpView.emailFormatInvalid();
+            return;
+        }
 
-        signUpModel.signUp(new Observer<SignUpResponse>() {
+        if(verification.equals(null) || verification.equals("")) {
+            signUpView.verificationEmpty();
+            return;
+        }
+
+        if(!email.equals(verificationEmail) || !verification.equals(verificationCode)) {
+            signUpView.verificationError();
+            return;
+        }
+
+        signUpModel.signUp(new Observer< Response<SignUpResponse> >() {
             @Override
             public void onSubscribe(Disposable d) {
 
             }
 
             @Override
-            public void onNext(SignUpResponse signUpResponse) {
-//                if(signUpResponse.getCondition())
-                Log.e("SignUpPresenter", signUpResponse.getCondition());
-                Log.e("SignUpPresenter", signUpResponse.getMessage());
+            public void onNext(Response<SignUpResponse> response) {
+                if(response.code() == 201) {
+                    signUpView.signUpSuccess();
+                } else {
+                    signUpView.signUpFailed(SignUpResult.EMAIL_EXISTED);
+                }
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.e("SignUpPresenter", e.getMessage());
+                signUpView.signUpFailed(SignUpResult.NETWORK_ERROR);
             }
 
             @Override
@@ -90,17 +91,23 @@ public class SignUpPresenter implements SignUpContract.Presenter{
             return;
         }
 
-        signUpModel.sendVerificationCode(new Observer<VerificationResponse>() {
+        signUpModel.sendVerificationCode(new Observer< Response<VerificationResponse> >() {
             @Override
             public void onSubscribe(Disposable d) {
 
             }
 
             @Override
-            public void onNext(VerificationResponse verificationResponse) {
-                VerificationPO verification = verificationResponse.getData();
-                verificationEmail = verification.getEmail();
-                verificationCode = verification.getCode();
+            public void onNext(Response< VerificationResponse> response) {
+                if(response.code() == 201) {
+                    signUpView.sendVerificationSuccess();
+
+                    VerificationPO verification = response.body().getData();
+                    verificationEmail = verification.getEmail();
+                    verificationCode = verification.getCode();
+                } else {
+                    signUpView.sendVerificationFailed();
+                }
             }
 
             @Override

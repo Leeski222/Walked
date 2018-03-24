@@ -21,6 +21,10 @@ public interface SignUpContract {
         void verificationError();
 
         void emailFormatInvalid();
+
+        void sendVerificationSuccess();
+
+        void sendVerificationFailed();
     }
 
     interface Presenter extends BasePresenter {

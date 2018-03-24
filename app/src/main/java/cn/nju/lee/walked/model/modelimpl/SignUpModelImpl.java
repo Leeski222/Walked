@@ -14,6 +14,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.RequestBody;
+import retrofit2.Response;
 
 /**
  * Created by 果宝 on 2018/3/7.
@@ -28,7 +29,7 @@ public class SignUpModelImpl implements SignUpModel {
     }
 
     @Override
-    public void signUp(Observer<SignUpResponse> observer,
+    public void signUp(Observer< Response<SignUpResponse> > observer,
                        File profile, String email, String username, String password) {
 
         //上传图片文件，获得图片的pic_id
@@ -50,7 +51,7 @@ public class SignUpModelImpl implements SignUpModel {
     }
 
     @Override
-    public void sendVerificationCode(Observer<VerificationResponse> observer,
+    public void sendVerificationCode(Observer< Response<VerificationResponse> > observer,
                                      String email) {
 
         signUpService.sendVerificationCode(email)

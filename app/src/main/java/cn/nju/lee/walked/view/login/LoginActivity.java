@@ -17,11 +17,16 @@ import cn.nju.lee.walked.presenter.LoginPresenter;
 import cn.nju.lee.walked.util.LoginResult;
 import cn.nju.lee.walked.view.signup.SignUpActivity;
 
+import static cn.nju.lee.walked.view.signup.SignUpActivity.SIGN_UP_SUCCESS_CODE;
+import static cn.nju.lee.walked.view.signup.SignUpActivity.SIGN_UP_SUCCESS_EMAIL;
+
 /**
  * Created by 果宝 on 2018/1/20.
  */
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
+
+    private static final int SIGN_UP_REQUEST_CODE = 1;
 
     private LoginContract.Presenter loginPresenter;
 
@@ -53,6 +58,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void loginSuccess() {
         Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
@@ -69,11 +75,21 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @OnClick(R.id.login_lv_jump_to_signup)
     void jumpToSignUpView() {
-        SignUpActivity.activityStart(this);
+        SignUpActivity.activityStart(this, SIGN_UP_REQUEST_CODE);
     }
 
     @OnClick(R.id.login_tv_jump_to_forget_password)
     void jumpToForgetPasswordView() {
         Toast.makeText(this, "跳转到找回密码界面", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == SIGN_UP_SUCCESS_CODE) {
+            String email = data.getStringExtra(SIGN_UP_SUCCESS_EMAIL);
+            this.usernameEditText.setText(email);
+        }
     }
 }

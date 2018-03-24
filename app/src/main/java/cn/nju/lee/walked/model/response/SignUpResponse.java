@@ -1,7 +1,8 @@
 package cn.nju.lee.walked.model.response;
 
 import cn.nju.lee.walked.model.vopo.SignUpPO;
-import okhttp3.ResponseBody;
+
+import retrofit2.Response;
 
 /**
  * Created by 果宝 on 2018/ic_info/7.

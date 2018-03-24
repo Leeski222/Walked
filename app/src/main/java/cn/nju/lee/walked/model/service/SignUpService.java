@@ -4,6 +4,7 @@ import cn.nju.lee.walked.model.response.SignUpResponse;
 import cn.nju.lee.walked.model.response.VerificationResponse;
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -20,7 +21,7 @@ public interface SignUpService {
             "Content-Type: application/json",
     })
     @POST("/users")
-    Observable<SignUpResponse> signUp(
+    Observable< Response<SignUpResponse> >signUp(
             @Body RequestBody body
     );
 
@@ -29,7 +30,7 @@ public interface SignUpService {
     })
     @FormUrlEncoded
     @POST("/verification")
-    Observable<VerificationResponse> sendVerificationCode(
+    Observable< Response<VerificationResponse> >sendVerificationCode(
             @Field("email") String email
     );
 }
