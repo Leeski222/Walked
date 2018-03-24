@@ -16,6 +16,10 @@ public interface SignUpContract {
 
         void signUpFailed(SignUpResult result);
 
+        void verificationEmpty();
+
+        void verificationError();
+
         void emailFormatInvalid();
     }
 

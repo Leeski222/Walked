@@ -29,7 +29,7 @@ public interface SignUpService {
     })
     @FormUrlEncoded
     @POST("/verification")
-    Observable<VerificationResponse> sendVerificationResponse(
+    Observable<VerificationResponse> sendVerificationCode(
             @Field("email") String email
     );
 }

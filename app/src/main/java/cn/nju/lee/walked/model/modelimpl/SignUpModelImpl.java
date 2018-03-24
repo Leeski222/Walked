@@ -3,11 +3,13 @@ package cn.nju.lee.walked.model.modelimpl;
 import java.io.File;
 
 import cn.nju.lee.walked.model.modelinterface.SignUpModel;
+import cn.nju.lee.walked.model.postbean.SignUpBean;
 import cn.nju.lee.walked.model.response.SignUpResponse;
 import cn.nju.lee.walked.model.response.VerificationResponse;
 import cn.nju.lee.walked.model.service.RetrofitServer;
 import cn.nju.lee.walked.model.service.SignUpService;
 import cn.nju.lee.walked.model.vopo.SignUpVO;
+import cn.nju.lee.walked.util.GsonUtil;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -29,8 +31,16 @@ public class SignUpModelImpl implements SignUpModel {
     public void signUp(Observer<SignUpResponse> observer,
                        File profile, String email, String username, String password) {
 
-        SignUpVO signUpVO = new SignUpVO();
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), signUpVO.toString());
+        //上传图片文件，获得图片的pic_id
+        String pic_id = "";
+
+        SignUpBean signUpBean = new SignUpBean();
+        signUpBean.setPic_id(pic_id);
+        signUpBean.setEmail(email);
+        signUpBean.setPassword(password);
+        signUpBean.setUsername(username);
+
+        RequestBody body = new GsonUtil<SignUpBean>().createRequestBody(signUpBean);
 
         signUpService.signUp(body)
                 .subscribeOn(Schedulers.io())
@@ -43,7 +53,7 @@ public class SignUpModelImpl implements SignUpModel {
     public void sendVerificationCode(Observer<VerificationResponse> observer,
                                      String email) {
 
-        signUpService.sendVerificationResponse(email)
+        signUpService.sendVerificationCode(email)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

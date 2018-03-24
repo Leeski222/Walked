@@ -77,7 +77,24 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     @Override
     public void signUpFailed(SignUpResult result) {
+        switch (result) {
+            case EMAIL_EXISTED:
+                Toast.makeText(this, "邮箱已注册", Toast.LENGTH_SHORT).show();
+                break;
+            case NETWORK_ERROR:
+                Toast.makeText(this, "网络错误", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
 
+    @Override
+    public void verificationEmpty() {
+        Toast.makeText(this, "验证码不能为空", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void verificationError() {
+        Toast.makeText(this, "验证码错误", Toast.LENGTH_SHORT).show();
     }
 
     @Override
