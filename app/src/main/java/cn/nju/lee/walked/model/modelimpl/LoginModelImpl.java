@@ -7,6 +7,7 @@ import cn.nju.lee.walked.model.service.RetrofitServer;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 /**
  * Created by 果宝 on 2018/3/7.
@@ -21,7 +22,7 @@ public class LoginModelImpl implements LoginModel {
     }
 
     @Override
-    public void login(Observer<LoginResponse> observer, String email, String password) {
+    public void login(Observer< Response<LoginResponse> > observer, String email, String password) {
         loginService.login(email, password)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

@@ -18,10 +18,13 @@ import java.io.InputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.nju.lee.walked.util.AppData;
 import cn.nju.lee.walked.util.PermissionUtil;
 import cn.nju.lee.walked.view.create.CreateActivity;
+import cn.nju.lee.walked.view.info.InfoActivity;
 import cn.nju.lee.walked.view.login.LoginActivity;
 import cn.nju.lee.walked.view.map.MapFragment;
+import cn.nju.lee.walked.view.seek.SeekActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private MapFragment mMapFragment;
 
     private final int LOCATION_CODE = 0;
-    private final int LOGIN_CODE = 1;
+    private final int INFO_CODE = 1;
     private final int SEEK_CODE = 2;
     private final int CREATE_CODE = 3;
 
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initWidget();
+        AppData.setContext(getApplication());
     }
 
     private void initCustomMap() {
@@ -85,25 +89,26 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(FabTagLayout tagView, int position) {
                 if(position == LOCATION_CODE) {
                     mMapFragment.setRequestLoc(true);
+                    return;
                 }
 
-                boolean isLogin = true;
+                boolean isLogin = AppData.getLoginState();
                 if(!isLogin) {
+                    Log.e("loginState", isLogin+"");
                     LoginActivity.activityStart(MainActivity.this);
+                    return;
                 }
 
                 switch (position) {
-                    case LOGIN_CODE :
-                        LoginActivity.activityStart(MainActivity.this);
+                    case INFO_CODE:
+                        InfoActivity.activityStart(MainActivity.this);
                         break;
                     case SEEK_CODE :
-                        mMapFragment.seekTracks();
-//                        SeekActivity.activityStart(MainActivity.this);
+                        SeekActivity.activityStart(MainActivity.this);
                         break;
                     case CREATE_CODE :
                         mMapFragment.onPause();
                         MyLocationData locationData = mMapFragment.getUserLocation();
-                        Log.e("locationData", locationData.latitude + " " + locationData.longitude);
                         CreateActivity.activityStart(MainActivity.this, locationData.latitude, locationData.longitude);
                         mMapFragment.onResume();
                         break;

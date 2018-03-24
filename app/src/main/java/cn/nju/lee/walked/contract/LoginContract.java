@@ -1,7 +1,6 @@
 package cn.nju.lee.walked.contract;
 
 import cn.nju.lee.walked.presenter.BasePresenter;
-import cn.nju.lee.walked.util.LoginResult;
 import cn.nju.lee.walked.view.BaseView;
 
 /**
@@ -12,7 +11,7 @@ public interface LoginContract {
     interface View extends BaseView<Presenter> {
         void loginSuccess();
 
-        void loginFailed(LoginResult result);
+        void loginFailed();
     }
 
     interface Presenter extends BasePresenter {

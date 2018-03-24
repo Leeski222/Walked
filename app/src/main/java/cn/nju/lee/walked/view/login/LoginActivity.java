@@ -14,7 +14,6 @@ import butterknife.OnClick;
 import cn.nju.lee.walked.R;
 import cn.nju.lee.walked.contract.LoginContract;
 import cn.nju.lee.walked.presenter.LoginPresenter;
-import cn.nju.lee.walked.util.LoginResult;
 import cn.nju.lee.walked.view.signup.SignUpActivity;
 
 import static cn.nju.lee.walked.view.signup.SignUpActivity.SIGN_UP_SUCCESS_CODE;
@@ -62,7 +61,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    public void loginFailed(LoginResult result) {
+    public void loginFailed() {
         Toast.makeText( this, "登录失败", Toast.LENGTH_SHORT).show();
     }
 

@@ -1,5 +1,7 @@
 package cn.nju.lee.walked.view.info;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +14,7 @@ import cn.nju.lee.walked.R;
 import cn.nju.lee.walked.view.info.fragment.AuthorFragment;
 import cn.nju.lee.walked.view.info.fragment.MyTracksFragment;
 import cn.nju.lee.walked.view.info.fragment.PersonalFragment;
+import cn.nju.lee.walked.view.login.LoginActivity;
 
 /**
  * Created by 果宝 on 2018/3/21.
@@ -20,6 +23,11 @@ import cn.nju.lee.walked.view.info.fragment.PersonalFragment;
 public class InfoActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     private FragmentManager mFragmentManager;
+
+    public static void activityStart(Activity activity) {
+        Intent intent = new Intent(activity, InfoActivity.class);
+        activity.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

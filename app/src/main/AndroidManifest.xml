@@ -53,6 +53,7 @@
         <activity android:name=".view.seek.SeekActivity" />
         <activity android:name=".view.signup.SignUpActivity" />
         <activity android:name=".view.track.TrackActivity" />
+        <activity android:name=".view.info.InfoActivity"/>
 
         <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"/>
 

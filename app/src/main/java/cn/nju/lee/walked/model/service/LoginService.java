@@ -2,6 +2,7 @@ package cn.nju.lee.walked.model.service;
 
 import cn.nju.lee.walked.model.response.LoginResponse;
 import io.reactivex.Observable;
+import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Headers;
@@ -17,7 +18,7 @@ public interface LoginService {
     })
     @FormUrlEncoded
     @POST("/users/token")
-    Observable<LoginResponse> login(
+    Observable< Response<LoginResponse> > login(
             @Field("email") String email,
             @Field("password") String password
     );

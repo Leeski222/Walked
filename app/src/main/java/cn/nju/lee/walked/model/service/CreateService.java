@@ -4,6 +4,7 @@ import cn.nju.lee.walked.model.response.SignUpResponse;
 import cn.nju.lee.walked.model.vopo.Post;
 import io.reactivex.Observable;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
@@ -17,6 +18,7 @@ public interface CreateService {
     })
     @POST("/posts")
     Observable<SignUpResponse> createTrack(
+            @Header("Authorization") String token,
             @Body Post post
     );
 }

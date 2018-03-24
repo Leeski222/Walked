@@ -5,9 +5,6 @@ package cn.nju.lee.walked.model.vopo;
  */
 
 public class LoginPO {
-//    Authorization ;
-
-    final String a = "Bearer ";
 
     long expires;
 

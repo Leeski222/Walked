@@ -6,8 +6,11 @@ import cn.nju.lee.walked.contract.LoginContract;
 import cn.nju.lee.walked.model.ModelRepository;
 import cn.nju.lee.walked.model.modelinterface.LoginModel;
 import cn.nju.lee.walked.model.response.LoginResponse;
+import cn.nju.lee.walked.model.vopo.LoginPO;
+import cn.nju.lee.walked.util.AppData;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import retrofit2.Response;
 
 /**
  * Created by 果宝 on 2018/3/7.
@@ -30,22 +33,30 @@ public class LoginPresenter implements LoginContract.Presenter{
 
     @Override
     public void login(String email, String password) {
-        Log.e("login", email + " " + password);
-        loginModel.login(new Observer<LoginResponse>() {
+        loginModel.login(new Observer< Response<LoginResponse> >() {
             @Override
             public void onSubscribe(Disposable d) {
 
             }
 
             @Override
-            public void onNext(LoginResponse loginResponse) {
-                Log.e("LoginPresenter onNext", loginResponse.getCondition());
-                Log.e("LoginPresenter onNext", loginResponse.getMessage());
+            public void onNext(Response<LoginResponse> response) {
+                if(response.code() == 201) {
+                    // 登录成功后，保存用户登录状态及相关信息
+                    LoginPO loginPO = response.body().getData();
+                    AppData.saveLoginState(true);
+                    AppData.saveToken(loginPO.getToken_string());
+                    AppData.saveExpires(loginPO.getExpires());
+
+                    loginView.loginSuccess();
+                } else {
+                    loginView.loginFailed();
+                }
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.e("LoginPresenter onError", e.getMessage());
+                loginView.loginFailed();
             }
 
             @Override
