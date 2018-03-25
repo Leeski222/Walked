@@ -76,6 +76,13 @@ public class CreateActivity extends AppCompatActivity implements UploadPictureUt
         });
     }
 
+    private void initInputRichEditor() {
+        inputRichEditor.setVerticalScrollBarEnabled(true);
+        inputRichEditor.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
+        inputRichEditor.setPadding(10, 10, 10, 10);
+        inputRichEditor.focusEditor();
+    }
+
     /**
      * 如果选择的输入框是题目，则锁定功能栏
      */
@@ -88,11 +95,43 @@ public class CreateActivity extends AppCompatActivity implements UploadPictureUt
         }
     }
 
-    private void initInputRichEditor() {
-        inputRichEditor.setVerticalScrollBarEnabled(true);
-        inputRichEditor.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
+    @OnClick(R.id.create_iv_bold)
+    public void setBold() {
+        if(!isLockFunctionBar) {
+            inputRichEditor.setBold();
+        }
+    }
 
-        inputRichEditor.focusEditor();
+    @OnClick(R.id.create_iv_italic)
+    public void setItalic() {
+        if(!isLockFunctionBar) {
+            inputRichEditor.setItalic();
+            inputRichEditor.focusEditor();
+        }
+    }
+
+    @OnClick(R.id.create_iv_underline)
+    public void setUnderline() {
+        if(!isLockFunctionBar) {
+            inputRichEditor.setUnderline();
+            inputRichEditor.focusEditor();
+        }
+    }
+
+    @OnClick(R.id.create_iv_redo)
+    public void redo() {
+        if(!isLockFunctionBar) {
+            inputRichEditor.redo();
+            inputRichEditor.focusEditor();
+        }
+    }
+
+    @OnClick(R.id.create_iv_undo)
+    public void undo() {
+        if(!isLockFunctionBar) {
+            inputRichEditor.undo();
+            inputRichEditor.focusEditor();
+        }
     }
 
     @OnClick(R.id.create_iv_justify_left)
@@ -121,7 +160,6 @@ public class CreateActivity extends AppCompatActivity implements UploadPictureUt
 
     @OnClick(R.id.create_iv_insert_picture)
     void insertPicture() {
-
         if(!isLockFunctionBar) {
             // 隐藏软键盘
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -137,14 +175,6 @@ public class CreateActivity extends AppCompatActivity implements UploadPictureUt
         final String fitScreen = "\" style=\"max-width:100%";
 
         inputRichEditor.insertImage(uri.toString(), uri.toString() + fitScreen);
-    }
-
-    @OnClick(R.id.print)
-    void print() {
-        String str = inputRichEditor.getHtml();
-        if(str != null) {
-            Log.e("content", str);
-        }
     }
 
     @Override

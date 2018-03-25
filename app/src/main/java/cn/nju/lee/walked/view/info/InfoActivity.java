@@ -14,7 +14,6 @@ import cn.nju.lee.walked.R;
 import cn.nju.lee.walked.view.info.fragment.AuthorFragment;
 import cn.nju.lee.walked.view.info.fragment.MyTracksFragment;
 import cn.nju.lee.walked.view.info.fragment.PersonalFragment;
-import cn.nju.lee.walked.view.login.LoginActivity;
 
 /**
  * Created by 果宝 on 2018/3/21.
@@ -36,7 +35,7 @@ public class InfoActivity extends AppCompatActivity implements BottomNavigationV
 
         mFragmentManager = this.getSupportFragmentManager();
         mFragmentManager.beginTransaction().replace(R.id.info_frame_content, new MyTracksFragment()).commit();
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.info_navigation);
         navigation.setOnNavigationItemSelectedListener(this);
     }
 

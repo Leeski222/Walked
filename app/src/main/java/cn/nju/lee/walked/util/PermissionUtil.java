@@ -17,7 +17,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 public class PermissionUtil {
     private volatile static PermissionUtil mPermissionUtil;
 
-    private Activity callActivity;
+    private Activity mActivity;
 
     private String[] permissions = {
             Manifest.permission.READ_PHONE_STATE,           //获取手机状态的权限
@@ -41,18 +41,18 @@ public class PermissionUtil {
 
     public void getPermissions(Activity activity) {
         if(Build.VERSION.SDK_INT >= 23) {
-            this.callActivity = activity;
-            if (EasyPermissions.hasPermissions(callActivity, permissions)) { //检查是否获取该权限
+            this.mActivity = activity;
+            if (EasyPermissions.hasPermissions(mActivity, permissions)) { //检查是否获取该权限
                 Log.e("getPermission", "已获取权限");
             } else {
-                EasyPermissions.requestPermissions(callActivity, "必要的权限", 0, permissions);
+                EasyPermissions.requestPermissions(mActivity, "必要的权限", 0, permissions);
             }
         }
     }
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         //把申请权限的回调交由EasyPermissions处理
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, callActivity);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, mActivity);
     }
 
     public void onPermissionsGranted(int requestCode, List<String> perms) {
