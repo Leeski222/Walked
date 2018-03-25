@@ -9,6 +9,6 @@ import retrofit2.Response;
  */
 
 public interface LoginModel {
-    void login(Observer<Response<LoginResponse>> observer,
+    void login(Observer< Response<LoginResponse> > observer,
                String email, String password);
 }

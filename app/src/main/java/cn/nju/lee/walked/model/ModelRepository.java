@@ -1,7 +1,9 @@
 package cn.nju.lee.walked.model;
 
+import cn.nju.lee.walked.model.modelimpl.CreateModelImpl;
 import cn.nju.lee.walked.model.modelimpl.LoginModelImpl;
 import cn.nju.lee.walked.model.modelimpl.SignUpModelImpl;
+import cn.nju.lee.walked.model.modelinterface.CreateModel;
 import cn.nju.lee.walked.model.modelinterface.LoginModel;
 import cn.nju.lee.walked.model.modelinterface.SignUpModel;
 
@@ -29,5 +31,9 @@ public class ModelRepository{
 
     public LoginModel getLoginModel() {
         return new LoginModelImpl();
+    }
+
+    public CreateModel getCreateModel() {
+        return new CreateModelImpl();
     }
 }

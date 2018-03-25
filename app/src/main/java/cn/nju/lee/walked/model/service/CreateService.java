@@ -1,8 +1,10 @@
 package cn.nju.lee.walked.model.service;
 
-import cn.nju.lee.walked.model.response.SignUpResponse;
-import cn.nju.lee.walked.model.vopo.Post;
+import cn.nju.lee.walked.model.response.CreateResponse;
+
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -17,8 +19,8 @@ public interface CreateService {
             "Content-Type: application/json",
     })
     @POST("/posts")
-    Observable<SignUpResponse> createTrack(
+    Observable< Response<CreateResponse> > createTrack(
             @Header("Authorization") String token,
-            @Body Post post
+            @Body RequestBody body
     );
 }

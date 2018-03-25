@@ -8,7 +8,6 @@ import cn.nju.lee.walked.model.response.SignUpResponse;
 import cn.nju.lee.walked.model.response.VerificationResponse;
 import cn.nju.lee.walked.model.service.RetrofitServer;
 import cn.nju.lee.walked.model.service.SignUpService;
-import cn.nju.lee.walked.model.vopo.SignUpVO;
 import cn.nju.lee.walked.util.GsonUtil;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;

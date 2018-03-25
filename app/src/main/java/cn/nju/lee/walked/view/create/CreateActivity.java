@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.baidu.mapapi.map.MyLocationData;
 
@@ -20,6 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnFocusChange;
 import cn.nju.lee.walked.R;
+import cn.nju.lee.walked.contract.CreateContract;
 import cn.nju.lee.walked.view.widget.SoftKeyboardListener;
 import cn.nju.lee.walked.view.widget.UploadPictureUtil;
 import jp.wasabeef.richeditor.RichEditor;
@@ -28,7 +30,7 @@ import jp.wasabeef.richeditor.RichEditor;
  * Created by 果宝 on 2018/3/13.
  */
 
-public class CreateActivity extends AppCompatActivity implements UploadPictureUtil.OnCropSuccess{
+public class CreateActivity extends AppCompatActivity implements CreateContract.View, UploadPictureUtil.OnCropSuccess{
 
     private static final String ARG_LOCATION_LATITUDE = "latitude";
     private double locationLatitude;
@@ -39,6 +41,8 @@ public class CreateActivity extends AppCompatActivity implements UploadPictureUt
     private boolean isLockFunctionBar;
 
     private UploadPictureUtil mUploadPictureUtil;
+
+    private CreateContract.Presenter createPresenter;
 
     @BindView(R.id.create_re_input)
     RichEditor inputRichEditor;
@@ -83,6 +87,32 @@ public class CreateActivity extends AppCompatActivity implements UploadPictureUt
         inputRichEditor.focusEditor();
     }
 
+    @Override
+    public void setPresenter(CreateContract.Presenter presenter) {
+        this.createPresenter = presenter;
+    }
+
+    @Override
+    public void createSuccess() {
+        Toast.makeText(this, "创建成功", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    @Override
+    public void createFailed() {
+        Toast.makeText(this, "创建失败", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.create_tv_return)
+    void cancle(){
+        finish();
+    }
+
+    @OnClick(R.id.create_tv_send)
+    void createTrack(){
+//        createPresenter
+    }
+
     /**
      * 如果选择的输入框是题目，则锁定功能栏
      */
@@ -106,7 +136,6 @@ public class CreateActivity extends AppCompatActivity implements UploadPictureUt
     public void setItalic() {
         if(!isLockFunctionBar) {
             inputRichEditor.setItalic();
-            inputRichEditor.focusEditor();
         }
     }
 
@@ -114,7 +143,6 @@ public class CreateActivity extends AppCompatActivity implements UploadPictureUt
     public void setUnderline() {
         if(!isLockFunctionBar) {
             inputRichEditor.setUnderline();
-            inputRichEditor.focusEditor();
         }
     }
 

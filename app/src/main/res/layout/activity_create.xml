@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--创建痕迹的页面-->
+<!--创建足迹的页面-->
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,7 +11,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:layout_weight="0"/>
+        android:layout_weight="0">
+
+        <TextView
+            android:id="@+id/create_tv_return"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:gravity="center"
+            android:text="返回"
+            android:textSize="18sp"
+            android:textColor="@color/colorBlack"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/create_tv_send"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="12dp"
+            android:gravity="center"
+            android:text="创建"
+            android:textSize="18sp"
+            android:textColor="@color/colorBlack"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -65,78 +92,93 @@
 
     </jp.wasabeef.richeditor.RichEditor>
 
-    <LinearLayout
-        android:id="@+id/create_ll_function_bar"
-        android:layout_width="match_parent"
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_weight="0"
-        android:orientation="horizontal"
-        android:visibility="invisible">
+        android:layout_weight="0">
 
-        <ImageView
-            android:id="@+id/create_iv_bold"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_info"/>
+        <LinearLayout
+            android:id="@+id/create_ll_function_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:orientation="horizontal"
+            android:visibility="invisible">
 
-        <ImageView
-            android:id="@+id/create_iv_italic"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_info"/>
+            <ImageView
+                android:id="@+id/create_iv_bold"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_account" />
 
-        <ImageView
-            android:id="@+id/create_iv_underline"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_info"/>
+            <ImageView
+                android:id="@+id/create_iv_italic"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_account" />
 
-        <ImageView
-            android:id="@+id/create_iv_redo"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_info"/>
+            <ImageView
+                android:id="@+id/create_iv_underline"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_account"/>
 
-        <ImageView
-            android:id="@+id/create_iv_undo"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_info"/>
+            <ImageView
+                android:id="@+id/create_iv_redo"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_account"/>
 
-        <ImageView
-            android:id="@+id/create_iv_justify_left"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_info"
-            android:focusable="false"/>
+            <ImageView
+                android:id="@+id/create_iv_undo"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_account"/>
 
-        <ImageView
-            android:id="@+id/create_iv_justify_center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_info"/>
+            <ImageView
+                android:id="@+id/create_iv_justify_left"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_account" />
 
-        <ImageView
-            android:id="@+id/create_iv_justify_right"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_info"/>
+            <ImageView
+                android:id="@+id/create_iv_justify_center"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_account"/>
 
-        <ImageView
-            android:id="@+id/create_iv_insert_picture"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_info"/>
+            <ImageView
+                android:id="@+id/create_iv_justify_right"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_account"/>
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/create_iv_insert_picture"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_account"/>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
 </LinearLayout>
