@@ -1,5 +1,7 @@
 package cn.nju.lee.walked.presenter;
 
+import android.util.Log;
+
 import cn.nju.lee.walked.contract.LoginContract;
 import cn.nju.lee.walked.model.ModelRepository;
 import cn.nju.lee.walked.model.modelinterface.LoginModel;
@@ -31,6 +33,7 @@ public class LoginPresenter implements LoginContract.Presenter{
 
     @Override
     public void login(String email, String password) {
+        Log.e("login", email + " " + password);
         loginModel.login(new Observer< Response<LoginResponse> >() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -39,6 +42,7 @@ public class LoginPresenter implements LoginContract.Presenter{
 
             @Override
             public void onNext(Response<LoginResponse> response) {
+                Log.e("login", response.code() + " ");
                 if(response.code() == 201) {
                     // 登录成功后，保存用户登录状态及相关信息
                     TokenPO tokenPO = response.body().getData();

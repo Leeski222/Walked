@@ -64,9 +64,11 @@ public class SignUpPresenter implements SignUpContract.Presenter{
 
             @Override
             public void onNext(Response<SignUpResponse> response) {
-                if(response.code() == 201) {
+                if (response.code() == 201) {
                     signUpView.signUpSuccess();
-                } else {
+                } else if (response.code() == 503) {
+                    signUpView.signUpFailed(SignUpResult.SEND_FAILED);
+                }else {
                     signUpView.signUpFailed(SignUpResult.EMAIL_EXISTED);
                 }
             }

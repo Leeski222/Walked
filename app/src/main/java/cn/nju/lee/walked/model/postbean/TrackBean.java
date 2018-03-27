@@ -6,8 +6,6 @@ package cn.nju.lee.walked.model.postbean;
 
 public class TrackBean {
 
-    String pic_id;
-
     String title;
 
     String content;
@@ -19,14 +17,6 @@ public class TrackBean {
     double latitude;
 
     double longitude;
-
-    public String getPic_id() {
-        return pic_id;
-    }
-
-    public void setPic_id(String pic_id) {
-        this.pic_id = pic_id;
-    }
 
     public String getTitle() {
         return title;

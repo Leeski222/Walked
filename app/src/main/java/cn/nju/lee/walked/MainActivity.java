@@ -92,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                boolean isLogin = AppData.getLoginState();
+//                boolean isLogin = AppData.getLoginState();
+                boolean isLogin = true;
                 if(!isLogin) {
                     Log.e("loginState", isLogin+"");
                     LoginActivity.activityStart(MainActivity.this);

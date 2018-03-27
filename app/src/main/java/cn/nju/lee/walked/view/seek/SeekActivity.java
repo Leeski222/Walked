@@ -1,6 +1,6 @@
 package cn.nju.lee.walked.view.seek;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.nju.lee.walked.R;
 import cn.nju.lee.walked.model.vopo.TrackVO;
-import cn.nju.lee.walked.view.seek.adapter.SeekListAdapter;
+import cn.nju.lee.walked.view.seek.adapter.TrackListAdapter;
 
 import static com.baidu.mapapi.BMapManager.getContext;
 
@@ -33,7 +33,7 @@ public class SeekActivity extends AppCompatActivity {
 
     private List<TrackVO> trackVOList;
 
-    private SeekListAdapter adapter;
+    private TrackListAdapter adapter;
 
     @BindView(R.id.seek_rcl_list)
     RecyclerView mRecyclerView;
@@ -41,9 +41,9 @@ public class SeekActivity extends AppCompatActivity {
     @BindView(R.id.seek_srl_refresh)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    public static void activityStart(Activity activity) {
-        Intent intent = new Intent(activity, SeekActivity.class);
-        activity.startActivity(intent);
+    public static void activityStart(Context context) {
+        Intent intent = new Intent(context, SeekActivity.class);
+        context.startActivity(intent);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class SeekActivity extends AppCompatActivity {
         setContentView(R.layout.activity_seek);
         ButterKnife.bind(this);
         initTrackList();
-        adapter = new SeekListAdapter(this, trackVOList);
+        adapter = new TrackListAdapter(this, trackVOList);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mSwipeRefreshLayout.setOnRefreshListener(new RefreshListener());
@@ -61,7 +61,7 @@ public class SeekActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        mRecyclerView.setAdapter(new SeekListAdapter(this, trackVOList));
+        mRecyclerView.setAdapter(new TrackListAdapter(this, trackVOList));
     }
 
     private void initTrackList() {

@@ -12,40 +12,39 @@
         android:layout_height="match_parent">
 
         <!--先隐藏搜索栏和筛选栏功能，等迭代二完成后再添加-->
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:visibility="invisible">
+        <!--<LinearLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
 
-            <android.support.v7.widget.SearchView
-                android:id="@+id/seek_sv_search"
-                android:background="#1A000000"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_weight="0">
-            </android.support.v7.widget.SearchView>
+            <!--<android.support.v7.widget.SearchView-->
+                <!--android:id="@+id/seek_sv_search"-->
+                <!--android:background="#1A000000"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:layout_marginRight="8dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="32dp"-->
+                <!--android:layout_weight="0">-->
+            <!--</android.support.v7.widget.SearchView>-->
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
+            <!--<View-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"/>-->
 
-            <Button
-                android:id="@+id/seek_btn_filter"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginRight="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0"
-                android:text="@string/filter"/>
+            <!--<Button-->
+                <!--android:id="@+id/seek_btn_filter"-->
+                <!--android:layout_marginTop="4dp"-->
+                <!--android:layout_marginBottom="4dp"-->
+                <!--android:layout_marginRight="8dp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:layout_weight="0"-->
+                <!--android:text="@string/filter"/>-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
         <View
             android:layout_alignParentBottom="true"

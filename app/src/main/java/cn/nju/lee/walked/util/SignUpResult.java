@@ -6,6 +6,7 @@ package cn.nju.lee.walked.util;
 
 public enum SignUpResult {
     SUCCESS,
+    SEND_FAILED,
     EMAIL_EXISTED,
     NETWORK_ERROR
 }

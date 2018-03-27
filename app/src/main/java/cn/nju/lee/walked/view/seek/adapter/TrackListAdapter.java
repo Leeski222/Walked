@@ -1,6 +1,7 @@
 package cn.nju.lee.walked.view.seek.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,13 +19,13 @@ import cn.nju.lee.walked.view.track.TrackActivity;
  * Created by 果宝 on 2018/ic_create/20.
  */
 
-public class SeekListAdapter extends RecyclerView.Adapter<SeekListAdapter.Holder> {
-    private Activity mContext;
-    private List<TrackVO> recordList;
+public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.Holder> {
+    private Context mContext;
+    private List<TrackVO> trackList;
 
-    public SeekListAdapter(Activity context, List<TrackVO> recordList) {
+    public TrackListAdapter(Context context, List<TrackVO> trackList) {
         this.mContext = context;
-        this.recordList = recordList;
+        this.trackList = trackList;
     }
 
     @Override
@@ -35,7 +36,7 @@ public class SeekListAdapter extends RecyclerView.Adapter<SeekListAdapter.Holder
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        TrackVO trackVO = recordList.get(position);
+        TrackVO trackVO = trackList.get(position);
 //        holder.userProfile.setImageResource(trackVO.getProfile());
         holder.userName.setText(trackVO.getUsername());
         holder.textContent.setText(trackVO.getContent());
@@ -45,7 +46,7 @@ public class SeekListAdapter extends RecyclerView.Adapter<SeekListAdapter.Holder
 
     @Override
     public int getItemCount() {
-        return recordList.size();
+        return trackList.size();
     }
 
     class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -71,7 +72,7 @@ public class SeekListAdapter extends RecyclerView.Adapter<SeekListAdapter.Holder
         @Override
         public void onClick(View v) {
             int pos = getAdapterPosition();
-            TrackVO trackVO = recordList.get(pos);
+            TrackVO trackVO = trackList.get(pos);
             switch (v.getId()) {
                 case R.id.text_record:
 //                    Intent intent = new Intent(getActivity(), VolDetailActivity.class);

@@ -1,6 +1,6 @@
 package cn.nju.lee.walked.view.track;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,9 +21,9 @@ public class TrackActivity extends AppCompatActivity {
     @BindView(R.id.track_re_content)
     RichEditor contentRichEditor;
 
-    public static void activityStart(Activity activity) {
-        Intent intent = new Intent(activity, TrackActivity.class);
-        activity.startActivity(intent);
+    public static void activityStart(Context context) {
+        Intent intent = new Intent(context, TrackActivity.class);
+        context.startActivity(intent);
     }
 
     @Override

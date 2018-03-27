@@ -88,6 +88,9 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
             case EMAIL_EXISTED:
                 Toast.makeText(this, "邮箱已注册", Toast.LENGTH_SHORT).show();
                 break;
+            case SEND_FAILED:
+                Toast.makeText(this, "发送失败，请重试", Toast.LENGTH_SHORT).show();
+                break;
             case NETWORK_ERROR:
                 Toast.makeText(this, "网络错误", Toast.LENGTH_SHORT).show();
                 break;

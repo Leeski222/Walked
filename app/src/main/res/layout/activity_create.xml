@@ -10,8 +10,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:layout_weight="0">
+        android:layout_height="48dp"
+        android:layout_weight="0"
+        android:background="#00897B"
+        android:alpha="0.7">
 
         <TextView
             android:id="@+id/create_tv_return"
@@ -21,7 +23,7 @@
             android:gravity="center"
             android:text="返回"
             android:textSize="18sp"
-            android:textColor="@color/colorBlack"/>
+            android:textColor="@color/colorWhite"/>
 
         <View
             android:layout_width="0dp"
@@ -36,7 +38,7 @@
             android:gravity="center"
             android:text="创建"
             android:textSize="18sp"
-            android:textColor="@color/colorBlack"/>
+            android:textColor="@color/colorWhite"/>
 
     </LinearLayout>
 
@@ -54,16 +56,16 @@
             android:background="@drawable/ic_account"/>
 
         <TextView
-            android:gravity="left|center"
+            android:gravity="start|center"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:text="姓名" />
 
         <TextView
-            android:gravity="left|center"
-            android:layout_marginLeft="8dp"
+            android:gravity="start|center"
+            android:layout_marginStart="8dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
