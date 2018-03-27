@@ -4,7 +4,7 @@ package cn.nju.lee.walked.model.postbean;
  * Created by 果宝 on 2018/3/24.
  */
 
-public class SignUpBean {
+public class UserInfoBean {
     String pic_id;
 
     String email;

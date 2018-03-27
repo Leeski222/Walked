@@ -23,7 +23,6 @@ public class RetrofitServer {
 
     private RetrofitServer() {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
-//        httpClientBuilder.cookieJar(new CookieJarImpl());
         httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
 
         retrofit = new Retrofit.Builder()

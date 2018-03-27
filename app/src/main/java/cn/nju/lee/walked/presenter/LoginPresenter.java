@@ -1,12 +1,10 @@
 package cn.nju.lee.walked.presenter;
 
-import android.util.Log;
-
 import cn.nju.lee.walked.contract.LoginContract;
 import cn.nju.lee.walked.model.ModelRepository;
 import cn.nju.lee.walked.model.modelinterface.LoginModel;
 import cn.nju.lee.walked.model.response.LoginResponse;
-import cn.nju.lee.walked.model.vopo.LoginPO;
+import cn.nju.lee.walked.model.vopo.TokenPO;
 import cn.nju.lee.walked.util.AppData;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -43,10 +41,10 @@ public class LoginPresenter implements LoginContract.Presenter{
             public void onNext(Response<LoginResponse> response) {
                 if(response.code() == 201) {
                     // 登录成功后，保存用户登录状态及相关信息
-                    LoginPO loginPO = response.body().getData();
+                    TokenPO tokenPO = response.body().getData();
                     AppData.saveLoginState(true);
-                    AppData.saveToken(loginPO.getToken_string());
-                    AppData.saveExpires(loginPO.getExpires());
+                    AppData.saveToken(tokenPO.getToken_string());
+                    AppData.saveExpires(tokenPO.getExpires());
 
                     loginView.loginSuccess();
                 } else {

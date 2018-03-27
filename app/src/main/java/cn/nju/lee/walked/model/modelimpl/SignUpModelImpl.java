@@ -3,7 +3,7 @@ package cn.nju.lee.walked.model.modelimpl;
 import java.io.File;
 
 import cn.nju.lee.walked.model.modelinterface.SignUpModel;
-import cn.nju.lee.walked.model.postbean.SignUpBean;
+import cn.nju.lee.walked.model.postbean.UserInfoBean;
 import cn.nju.lee.walked.model.response.SignUpResponse;
 import cn.nju.lee.walked.model.response.VerificationResponse;
 import cn.nju.lee.walked.model.service.RetrofitServer;
@@ -34,13 +34,13 @@ public class SignUpModelImpl implements SignUpModel {
         //上传图片文件，获得图片的pic_id
         String pic_id = "";
 
-        SignUpBean signUpBean = new SignUpBean();
-        signUpBean.setPic_id(pic_id);
-        signUpBean.setEmail(email);
-        signUpBean.setPassword(password);
-        signUpBean.setUsername(username);
+        UserInfoBean userInfoBean = new UserInfoBean();
+        userInfoBean.setPic_id(pic_id);
+        userInfoBean.setEmail(email);
+        userInfoBean.setPassword(password);
+        userInfoBean.setUsername(username);
 
-        RequestBody body = new GsonUtil<SignUpBean>().createRequestBody(signUpBean);
+        RequestBody body = new GsonUtil<UserInfoBean>().createRequestBody(userInfoBean);
 
         signUpService.signUp(body)
                 .subscribeOn(Schedulers.io())

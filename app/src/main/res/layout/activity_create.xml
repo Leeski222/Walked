@@ -111,7 +111,8 @@
                 android:layout_height="36dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:src="@drawable/ic_account" />
+                android:src="@drawable/ic_bold"
+                android:scaleType="center"/>
 
             <ImageView
                 android:id="@+id/create_iv_italic"
@@ -119,7 +120,8 @@
                 android:layout_height="36dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:src="@drawable/ic_account" />
+                android:src="@drawable/ic_italic"
+                android:scaleType="center"/>
 
             <ImageView
                 android:id="@+id/create_iv_underline"
@@ -127,7 +129,8 @@
                 android:layout_height="36dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:src="@drawable/ic_account"/>
+                android:src="@drawable/ic_underline"
+                android:scaleType="center"/>
 
             <ImageView
                 android:id="@+id/create_iv_redo"
@@ -135,7 +138,8 @@
                 android:layout_height="36dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:src="@drawable/ic_account"/>
+                android:src="@drawable/ic_redo"
+                android:scaleType="center"/>
 
             <ImageView
                 android:id="@+id/create_iv_undo"
@@ -143,7 +147,8 @@
                 android:layout_height="36dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:src="@drawable/ic_account"/>
+                android:src="@drawable/ic_undo"
+                android:scaleType="center"/>
 
             <ImageView
                 android:id="@+id/create_iv_justify_left"
@@ -151,7 +156,8 @@
                 android:layout_height="36dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:src="@drawable/ic_account" />
+                android:src="@drawable/ic_align_left"
+                android:scaleType="center"/>
 
             <ImageView
                 android:id="@+id/create_iv_justify_center"
@@ -159,7 +165,8 @@
                 android:layout_height="36dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:src="@drawable/ic_account"/>
+                android:src="@drawable/ic_align_center"
+                android:scaleType="center"/>
 
             <ImageView
                 android:id="@+id/create_iv_justify_right"
@@ -167,7 +174,8 @@
                 android:layout_height="36dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:src="@drawable/ic_account"/>
+                android:src="@drawable/ic_align_right"
+                android:scaleType="center"/>
 
             <ImageView
                 android:id="@+id/create_iv_insert_picture"
@@ -175,7 +183,8 @@
                 android:layout_height="36dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:src="@drawable/ic_account"/>
+                android:src="@drawable/ic_insert_picture"
+                android:scaleType="center"/>
 
         </LinearLayout>
 
